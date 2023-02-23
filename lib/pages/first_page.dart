@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notepad/models/category_model.dart';
 import 'package:notepad/widget/text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'dart:math' as math; // import this
 
 class FirstPage extends StatefulWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -102,11 +102,7 @@ class _FirstPageState extends State<FirstPage> {
                 Expanded(child: Container()),
                 const Padding(
                   padding: EdgeInsets.only(right: 20.0),
-                  child: AppText(
-                      text: "view more",
-                      size: 12,
-                      color: Color(0xff2A135A),
-                      fontWeight: FontWeight.bold),
+                  child: Icon(Icons.arrow_forward_ios_sharp,color: Color(0xff2A135A),)
                 ),
               ],
             ),
@@ -282,11 +278,10 @@ class _FirstPageState extends State<FirstPage> {
                           ],
                         ),
                         Positioned(
-                          // right: 30,
                           left: sWidth * 0.22,
                           top: sHeight * 0.09,
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
+                            padding: const EdgeInsets.fromLTRB(15,0, 15.0,15),
                             child: Container(
                               decoration: BoxDecoration(
                                 boxShadow: [
@@ -304,7 +299,7 @@ class _FirstPageState extends State<FirstPage> {
                               height: sHeight * 0.08,
                               child: Transform(
                                 alignment: Alignment.center,
-                                transform: Matrix4.rotationY(math.pi),
+                                transform: Matrix4.rotationY(categoryModel.rotate),
                                 child: Transform(
                                   transform: Matrix4.rotationZ(-0.29),
                                   child: SvgPicture.asset(
@@ -326,5 +321,15 @@ class _FirstPageState extends State<FirstPage> {
         ),
       ),
     ));
+  }
+}
+
+class FirstPageRoute extends CupertinoPageRoute {
+  FirstPageRoute()
+      : super(builder: (BuildContext context) => const FirstPage());
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
+    return FadeTransition(opacity: animation, child: const FirstPage());
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notepad/pages/first_page.dart';
+import 'package:notepad/pages/welcome_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'NotePad',
-      home: FirstPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

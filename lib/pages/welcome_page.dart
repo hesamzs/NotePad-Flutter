@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:notepad/pages/first_page.dart';
 
 import '../models/welcome_model.dart';
 import '../widget/text_widget.dart';
@@ -16,21 +17,25 @@ class FirstImage extends StatefulWidget {
 class _FirstImageState extends State<FirstImage> {
   @override
   void initState() {
-    Timer(const Duration(milliseconds: 300), (){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
-          const HomePage()));
+    Timer(const Duration(milliseconds: 300), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
     });
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var sWidth = size.width;
     var sHeight = size.height;
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
-        child: Image.asset("assets/images/logo.png",width: sWidth * 0.5, height: sHeight * 0.5,),
+        child: Image.asset(
+          "assets/images/logo.png",
+          width: sWidth * 0.5,
+          height: sHeight * 0.5,
+        ),
       ),
     );
   }
@@ -210,27 +215,35 @@ class _HomePageState extends State<HomePage> {
                                   },
                                   child: FadeInUp(
                                     delay: const Duration(milliseconds: 100),
-                                    child: Container(
-                                      width: sWidth * 0.4,
-                                      height: sHeight * 0.06,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: const Color(0xff2A135A),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                left: sWidth * 0.08),
-                                            child: Center(
-                                              child: AppText(
-                                                  text: "Get Started",
-                                                  size: sWidth * 0.05,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(new FirstPageRoute());
+
+                                      },
+                                      child: Container(
+                                        width: sWidth * 0.4,
+                                        height: sHeight * 0.06,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: const Color(0xff2A135A),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: sWidth * 0.08),
+                                              child: Center(
+                                                child: AppText(
+                                                    text: "Get Started",
+                                                    size: sWidth * 0.05,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
