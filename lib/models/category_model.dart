@@ -53,6 +53,17 @@ List<CategoryModel> categoryComponents = [
       logocolor: 0xff3C0F56,
       rotate: 0
   ),
+  CategoryModel(
+      title: "Exercise",
+      description: "0 note",
+      imageUrl: "assets/images/exercise.svg",
+      color: 0xffCC8431,
+      darkcolor: 0xffB4670F,
+      lightcolor: 0xffF5A952,
+      logocolor: 0xff562E00,
+      rotate: math.pi
+  ),
+
 
 
 ];
