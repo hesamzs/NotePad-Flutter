@@ -83,20 +83,7 @@ class _HomePageState extends State<HomePage> {
                   if (index.toInt() == 2) {
                     return Column(
                       children: [
-                        FadeInRight(
-                          delay: const Duration(milliseconds: 100),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 20),
-                            alignment: AlignmentDirectional.centerEnd,
-                            width: sWidth,
-                            child: Image.asset(
-                              'assets/images/close.png',
-                              width: 20,
-                              height: 20,
-                            ),
-                          ),
-                        ),
+                        closebtn(sWidth),
                         Expanded(child: Container()),
                         SizedBox(
                           height: sHeight * 0.8,
@@ -258,20 +245,7 @@ class _HomePageState extends State<HomePage> {
                     WelcomeModel current = welcomeComponents[index];
                     return Column(
                       children: [
-                        FadeInRight(
-                          delay: const Duration(milliseconds: 100),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 20),
-                            alignment: AlignmentDirectional.centerEnd,
-                            width: sWidth,
-                            child: Image.asset(
-                              'assets/images/close.png',
-                              width: 20,
-                              height: 20,
-                            ),
-                          ),
-                        ),
+                        closebtn(sWidth),
                         Expanded(child: Container()),
                         SizedBox(
                           height: sHeight * .8,
@@ -449,6 +423,31 @@ class _HomePageState extends State<HomePage> {
                   }
                 }),
           )),
+    );
+
+
+  }
+  FadeInRight closebtn (sWidth){
+    return FadeInRight(
+      delay: const Duration(milliseconds: 100),
+      child: GestureDetector(
+        onTap: () =>
+            Timer(const Duration(milliseconds: 300), () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => const FirstPage()));
+            }),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 15, vertical: 20),
+          alignment: AlignmentDirectional.centerEnd,
+          width: sWidth,
+          child: Image.asset(
+            'assets/images/close.png',
+            width: 20,
+            height: 20,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notepad/pages/first_page.dart';
 import 'package:flutter/services.dart';
+import 'package:notepad/pages/welcome_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,7 +11,6 @@ void main() {
   ]).then((value) => runApp(const MyApp()));
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
 
   const MyApp({super.key});
@@ -24,6 +24,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// FirstImage() For Final App
-// HomePage() For Welcome Page
+// HomePage() For Final App
+// FirstImage() For Image Logo Page
 // FirstPage() For First Page

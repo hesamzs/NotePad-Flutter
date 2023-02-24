@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppText extends StatelessWidget {
   const AppText(
@@ -19,11 +18,13 @@ class AppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoSizeText(
       text,
-      style: GoogleFonts.ubuntu(
+      style: TextStyle(
         fontSize: size,
         color: color,
         fontWeight: fontWeight,
+        fontFamily: 'ubunto'
       ),
     );
   }
 }
+
