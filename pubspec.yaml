@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^1.1.6
   auto_size_text: ^3.0.0
   flutter_staggered_animations: ^1.1.1
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:
@@ -30,13 +31,6 @@ flutter:
 
   assets:
     - assets/images/
-
-  fonts:
-    - family: Ubunto
-      fonts:
-        - asset: fonts/ubunto-fonts/Ubunto-Regular.ttf
-        - asset: fonts/ubunto-fonts/Ubunto-Medium.ttf
-        - asset: fonts/ubunto-fonts/Ubunto-Bold.ttf
 
   # fonts:
   #   - family: Schyler
