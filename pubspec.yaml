@@ -13,7 +13,6 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   animate_do: ^3.0.2
-  shape_of_view_null_safe: ^2.0.0
   flutter_svg: ^1.1.6
   auto_size_text: ^3.0.0
   flutter_staggered_animations: ^1.1.1

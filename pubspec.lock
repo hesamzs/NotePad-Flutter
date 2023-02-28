@@ -256,13 +256,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-  shape_of_view_null_safe:
-    dependency: "direct main"
-    description:
-      name: shape_of_view_null_safe
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
