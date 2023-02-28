@@ -63,13 +63,12 @@ class _FirstPageState extends State<FirstPage> {
     var size = MediaQuery.of(context).size;
     var sWidth = size.width;
     var sHeight = size.height;
-    xOffset = sWidth / -1.2;
     return SafeArea(
         child: Scaffold(
           backgroundColor: const Color(0xffF1F5FD),
           body: Stack(
             children: [
-              DrawerScreen(),
+              const DrawerScreen(),
               SizedBox(
                 width: sWidth,
                 height: sHeight,
