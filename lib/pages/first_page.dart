@@ -8,7 +8,7 @@ import 'package:notepad/models/recent_model.dart';
 import 'package:notepad/widget/text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'drawer-page.dart';
+import 'drawer_page.dart';
 
 class FirstPageRoute extends CupertinoPageRoute {
   FirstPageRoute()
@@ -93,7 +93,6 @@ class _FirstPageState extends State<FirstPage> {
                             delay: const Duration(milliseconds: 100),
                             child: Padding(
                               key: _key,
-
                               padding: const EdgeInsets.all(16.0),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
