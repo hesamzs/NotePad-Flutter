@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'NotePad',
-      home: HomePage(),
+      home: FirstPage(),
       debugShowCheckedModeBanner: false,
     );
   }
