@@ -29,9 +29,6 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  double xOffset = 0;
-  double yOffset = 0;
-
   bool isDrawerOpen = false;
 
   final now = DateTime.now();
@@ -66,26 +63,26 @@ class _FirstPageState extends State<FirstPage> {
     var size = MediaQuery.of(context).size;
     var sWidth = size.width;
     var sHeight = size.height;
-    // var xOffset = sWidth / -1.2;
     return SafeArea(
         child: Scaffold(
             backgroundColor: const Color(0xffF1F5FD),
             body: Stack(
               children: [
-                const DrawerScreen(),
+                DrawerScreen(),
                 SizedBox(
                   width: sWidth,
                   height: sHeight,
                   child: AnimatedContainer(
                     alignment: Alignment.center,
-                    transform: Matrix4.translationValues(xOffset, yOffset, 0)
+                    transform: Matrix4.translationValues(isDrawerOpen
+                        ? sWidth / -1.2 : 0, 0, 0)
                       ..scale(1.00),
                     duration: const Duration(milliseconds: 200),
                     decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
                     child: SingleChildScrollView(
-                      physics: xOffset == 0 ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
+                      physics: isDrawerOpen ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
                       child: Column(
                         children: [
                           // App Bar ----
@@ -127,20 +124,14 @@ class _FirstPageState extends State<FirstPage> {
                                   GestureDetector(
                                     onTap: () {
                                       isDrawerOpen
-                                          ? setState(() {
-                                              xOffset = 0;
-                                              yOffset = 0;
-                                              isDrawerOpen = false;
-                                            })
-                                          : setState(() {
-                                              Scrollable.ensureVisible(_key.currentContext!);
-                                              xOffset = sWidth / -1.2;
-                                              yOffset = 0;
-                                              isDrawerOpen = true;
-                                            });
+                                          ? setState((){isDrawerOpen = false;})
+                                          : setState((){
+                                        isDrawerOpen = true;
+                                        Scrollable.ensureVisible(_key.currentContext!);
+                                      });
+
                                     },
                                     child: SizedBox(
-
                                         width: sWidth * 0.1,
                                         height: 30,
                                         child: SvgPicture.asset(

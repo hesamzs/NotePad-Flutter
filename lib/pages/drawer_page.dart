@@ -29,6 +29,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               color: Color(0xffF1F5FD),
             ),
             width: sWidth / 1.2,
+
             height: sHeight,
             child: Column(
               children: [
@@ -67,9 +68,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         fontWeight: FontWeight.bold),
                   ],
                 ),
-                Expanded(child: Container()),
+                Expanded(flex:1,child: Container()),
                 SettingMenu(),
-                Expanded(child: Container()),
+                Expanded(flex:3,child: Container()),
+
                 const FooterPage(),
               ],
             ),
