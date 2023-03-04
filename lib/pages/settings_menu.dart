@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:notepad/pages/settings_panel/contact_us.dart';
 import 'package:notepad/pages/settings_panel/sounds_panel.dart';
 
 import '../widget/text_widget.dart';
+import 'settings_panel/theme_panel.dart';
+import 'settings_panel/vibrate_panel.dart';
 
 class SettingMenu extends StatefulWidget {
   SettingMenu({Key? key}) : super(key: key);
@@ -25,58 +28,64 @@ class _SettingMenuState extends State<SettingMenu> {
     }
   }
 
+  bool clicked = false;
 
   List settingMenu = [
     ["Sounds", 0 ,false,0,110 ,16, const SoundsPanel(),false],
-    ["Vibration", 0 ,false,0,100, 16,Container(),false],
-    ["Theme", 0 ,false,0,150,16, Container(),false],
-    ["Contact Us", 0 ,false,0,150,16, Container(),false],
+    ["Vibration", 0 ,false,0,140, 16,const VibratePanel(),false],
+    ["Theme", 0 ,false,0,120,16, const ThemePanel(),false],
+    ["Contact Us", 0 ,false,0,150,16, ContactUs(),false],
   ];
 
   @override
   Widget build(BuildContext context) {
     final sWidth = MediaQuery.of(context).size.width;
-    return Column(
-
-      children: [
-        for (var current in settingMenu)
-          Padding(
+    return ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        itemCount: settingMenu.length,
+        itemBuilder: (context,index){
+          var current = settingMenu[index];
+          return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
             child: GestureDetector(
               onTap: () {
-                if (current[2] == false) {
-                  Future.delayed(const Duration(milliseconds: 180), () {
-                    setState(() {
-                      current[7] = !current[7];
+                if (clicked == false ){
+                  clicked = true;
+                  if (current[2] == false) {
+                    Future.delayed(const Duration(milliseconds: 180), () {
+                      setState(() {
+                        current[7] = !current[7];
+                      });
                     });
-                  });
 
-                  setState(() {
+                    setState(() {
+                      for(var booleans in settingMenu){
+                        booleans[2] ? booleans[3] += .5 : booleans[3] += 0 ;
+                        booleans[2] = false;
+                        booleans[7] = false;
+                        booleans[5] = 16;
+
+                      }
+                    });
+                    current[5] += 6 ;
+                    current[3] += -.5;
+                    current[2] = true;
+                  } else {
+                    Future.delayed(const Duration(milliseconds: 20), () {
+                      setState(() {
+                        current[7] = !current[7];
+                      });
+                    });
                     for(var booleans in settingMenu){
-                      booleans[2] = false;
-                      booleans[7] = false;
+                      booleans[5] = 16;
                     }
-                  });
-
-                  for(var booleans in settingMenu){
-                    booleans[5] = 16;
+                    current[3] += .5;
+                    current[2] = false;
                   }
-                  current[5] += 6 ;
-                  current[3] += -.5;
-                  current[2] = true;
-                } else {
-
-                  Future.delayed(const Duration(milliseconds: 20), () {
-                    setState(() {
-                      current[7] = !current[7];
-                    });
-                  });
-                  for(var booleans in settingMenu){
-                    booleans[5] = 16;
-                  }
-                  current[3] += .5;
-                  current[2] = false;
-                }
+                  Future.delayed(Duration(milliseconds: 400),(){clicked = false;});
+                }else{print('falsee');}
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
@@ -110,7 +119,7 @@ class _SettingMenuState extends State<SettingMenu> {
                                 color: const Color(0xffF1F5FD),
                                 fontWeight: FontWeight.bold),
                             child: Text(
-                                current[0],
+                              current[0],
                             ),
                           ),
                         ),
@@ -140,18 +149,17 @@ class _SettingMenuState extends State<SettingMenu> {
                       ],
                     ),
                     current[7] ? Expanded(
-                      child:  Container(
-                        child: current[6],
-                        // color: Colors.red,
-                      )
+                        child:  Container(
+                          child: current[6],
+                        )
                     ):const SizedBox(),
                     // Expanded(child: Container()),
                   ],
                 ),
               ),
             ),
-          ),
-      ],
+          );
+        }
     );
   }
 }

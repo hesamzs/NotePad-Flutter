@@ -29,52 +29,70 @@ class _DrawerScreenState extends State<DrawerScreen> {
               color: Color(0xffF1F5FD),
             ),
             width: sWidth / 1.2,
-
             height: sHeight,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: sHeight * 0.1,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      height: 9,
-                      width: 25,
-                      decoration: const BoxDecoration(
-                        color: Color(0xff2A135A),
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(5),
-                            bottomRight: Radius.circular(5)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0xff2A135A),
-                            blurRadius: 6.0,
-                            offset: Offset(
-                              0,
-                              3,
+            child: sHeight > 240
+                ? Column(
+                    children: [
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 9,
+                            width: 25,
+                            decoration: const BoxDecoration(
+                              color: Color(0xff2A135A),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(5),
+                                  bottomRight: Radius.circular(5)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xff2A135A),
+                                  blurRadius: 6.0,
+                                  offset: Offset(
+                                    0,
+                                    3,
+                                  ),
+                                )
+                              ],
                             ),
-                          )
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const AppText(
+                              text: "Settings",
+                              size: 20,
+                              color: Color(0xff2A135A),
+                              fontWeight: FontWeight.bold),
                         ],
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const AppText(
-                        text: "Settings",
-                        size: 20,
+                      Container(
+                        color: Colors.transparent,
+                        height: sHeight > 280 ? sHeight * 0.16 : sHeight * 0.09,
+                      ),
+                      Container(
+                        height: sHeight > 450 ? sHeight / 1.7 : sHeight / 2,
+                        color: Colors.transparent,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [SettingMenu()],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      )
+                    ],
+                  )
+                : const Center(
+                    child: AppText(
+                        text: "your screen size is too small ",
+                        size: 14,
                         color: Color(0xff2A135A),
-                        fontWeight: FontWeight.bold),
-                  ],
-                ),
-                Expanded(flex:1,child: Container()),
-                SettingMenu(),
-                Expanded(flex:3,child: Container()),
-
-                const FooterPage(),
-              ],
-            ),
+                        fontWeight: FontWeight.w600),
+                  ),
           )
         ],
       ),

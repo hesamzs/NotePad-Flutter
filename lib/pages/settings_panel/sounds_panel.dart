@@ -14,36 +14,42 @@ class _SoundsPanelState extends State<SoundsPanel> {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      padding: const EdgeInsets.fromLTRB(16,0,16,10),
       child: GestureDetector(
         onTap: (){
           print('clicked');
         },
         child: Row(
+
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const AppText(
-                    text: "Ringtone",
-                    size: 10,
-                    color: Color(0xffF1F5FD),
-                    fontWeight: FontWeight.bold),
-                const SizedBox(
-                  height: 2,
+            Expanded(
+              child: Container(
+                color: Colors.transparent,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const AppText(
+                        text: "Ringtone",
+                        size: 10,
+                        color: Color(0xffF1F5FD),
+                        fontWeight: FontWeight.bold),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    AppText(
+                        text: "Default",
+                        size: 10,
+                        color: const Color(0xffF1F5FD).withOpacity(.6),
+                        fontWeight: FontWeight.bold),
+                  ],
                 ),
-                AppText(
-                    text: "Default",
-                    size: 10,
-                    color: const Color(0xffF1F5FD).withOpacity(.6),
-                    fontWeight: FontWeight.bold),
-              ],
+
+              ),
             ),
-            Expanded(child: Container()),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Container(

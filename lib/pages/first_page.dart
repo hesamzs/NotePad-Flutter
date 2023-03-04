@@ -29,7 +29,7 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  bool isDrawerOpen = false;
+  bool isDrawerOpen = true;
 
   final now = DateTime.now();
   final months = [
@@ -204,8 +204,8 @@ class _FirstPageState extends State<FirstPage> {
                                 shrinkWrap: true,
                                 itemCount: categoryComponents.length,
                                 gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: sWidth > 270 ? 2 : 1,
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10,
                                   mainAxisExtent: 135,
@@ -278,7 +278,7 @@ class _FirstPageState extends State<FirstPage> {
                                                               )
                                                             ],
                                                           ),
-                                                          width: sWidth * 0.18,
+                                                          width: sWidth > 270 ? sWidth * 0.18 : 60 ,
                                                           height: 60,
                                                           child: Padding(
                                                             padding: EdgeInsets
@@ -386,7 +386,7 @@ class _FirstPageState extends State<FirstPage> {
                                                   ),
                                                   Padding(
                                                     padding: EdgeInsets.only(
-                                                      left: sWidth * 0.03,
+                                                      left: sWidth > 270 ? sWidth * 0.03 : sWidth * 0.05,
                                                     ),
                                                     child: Row(
                                                       mainAxisAlignment:
@@ -435,7 +435,7 @@ class _FirstPageState extends State<FirstPage> {
                                                 ],
                                               ),
                                               Positioned(
-                                                right: sWidth * -0.05,
+                                                right: sWidth > 270 ? sWidth * -0.05 : sWidth * -0.02,
                                                 top: 70,
                                                 child: Padding(
                                                   padding:
