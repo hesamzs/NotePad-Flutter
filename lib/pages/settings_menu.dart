@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:notepad/pages/settings_panel/contact_us.dart';
 import 'package:notepad/pages/settings_panel/sounds_panel.dart';
 
-import '../widget/text_widget.dart';
 import 'settings_panel/theme_panel.dart';
 import 'settings_panel/vibrate_panel.dart';
 
@@ -34,7 +33,7 @@ class _SettingMenuState extends State<SettingMenu> {
     ["Sounds", 0 ,false,0,110 ,16, const SoundsPanel(),false],
     ["Vibration", 0 ,false,0,140, 16,const VibratePanel(),false],
     ["Theme", 0 ,false,0,120,16, const ThemePanel(),false],
-    ["Contact Us", 0 ,false,0,150,16, ContactUs(),false],
+    ["Contact Us", 0 ,false,0,190,16, ContactUs(),false],
   ];
 
   @override

@@ -100,30 +100,3 @@ class _DrawerScreenState extends State<DrawerScreen> {
   }
 }
 
-class FooterPage extends StatelessWidget {
-  const FooterPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppText(
-            text: "Made with \u2764 by hesamzs",
-            size: 14,
-            color: const Color(0xff2A135A).withOpacity(0.8),
-            fontWeight: FontWeight.bold),
-        const SizedBox(
-          height: 5,
-        ),
-        AppText(
-            text: "v0.10",
-            size: 12,
-            color: const Color(0xff2A135A).withOpacity(0.8),
-            fontWeight: FontWeight.bold),
-        const SizedBox(
-          height: 15,
-        )
-      ],
-    );
-  }
-}

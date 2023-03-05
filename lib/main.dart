@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:notepad/pages/first_page.dart';
 import 'package:notepad/pages/welcome_page.dart';
 
 void main() {
@@ -18,14 +17,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'NotePad',
-      home:  FirstPage(),
+      home:  FirstImage(),
       debugShowCheckedModeBanner: false,
     );
   }
 
 }
-
-// // HomePage() For Final App
-// // FirstImage() For Image Logo Page
-// // FirstPage() For First Page
+// FirstImage() For Final App
+// HomePage() For Welcome Page
+// FirstPage() For First Page
 
