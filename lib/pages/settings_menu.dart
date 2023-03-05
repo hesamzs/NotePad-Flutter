@@ -114,7 +114,7 @@ class _SettingMenuState extends State<SettingMenu> {
                           padding: const EdgeInsets.fromLTRB(15, 15, 2, 15),
                           child: AnimatedDefaultTextStyle(
                             duration: const Duration(milliseconds: 300),
-                            style: TextStyle(fontSize: checkDouble(current[5].toString()),
+                            style: TextStyle(fontSize: sWidth > 270 ? checkDouble(current[5].toString()) : checkDouble(current[5].toString()) - 4,
                                 color: const Color(0xffF1F5FD),
                                 fontWeight: FontWeight.bold),
                             child: Text(

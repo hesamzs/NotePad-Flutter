@@ -29,19 +29,6 @@ class ContactUs extends StatelessWidget {
           } else {
             return GestureDetector(
               onTap: () {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                Clipboard.setData(ClipboardData(text: current[1]))
-                    .then((value) => {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(
-                              "${current[0]} Link copied to clipboard",
-                              style: const TextStyle(color: Color(0xffF1F5FD)),
-                            ),
-                            backgroundColor: const Color(0xff2A135A),
-                            behavior: SnackBarBehavior.floating,
-                            duration: const Duration(milliseconds: 900),
-                          ))
-                        });
                 print('copied${current[1]}');
               },
               child: SizedBox(
@@ -80,14 +67,16 @@ class FooterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sWidth = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
         const SizedBox(
           height: 5,
         ),
         AppText(
-            text: "Made with \u2764 by hesamzs",
-            size: 14,
+            text: sWidth > 240 ? "Made with \u2764 by hesamzs" : "Made by hesamzs",
+            size: sWidth > 270 ? 14 : 8,
             color: const Color(0xffF1F5FD).withOpacity(0.8),
             fontWeight: FontWeight.bold),
         const SizedBox(
@@ -95,7 +84,7 @@ class FooterPage extends StatelessWidget {
         ),
         AppText(
             text: "v0.10",
-            size: 12,
+            size:  sWidth > 270 ? 12 : 8,
             color: const Color(0xffF1F5FD).withOpacity(0.8),
             fontWeight: FontWeight.bold),
         const SizedBox(

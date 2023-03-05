@@ -28,8 +28,9 @@ class FirstPage extends StatefulWidget {
   State<FirstPage> createState() => _FirstPageState();
 }
 
+
 class _FirstPageState extends State<FirstPage> {
-  bool isDrawerOpen = false;
+  bool isDrawerOpen = true;
 
   final now = DateTime.now();
   final months = [
@@ -553,7 +554,7 @@ class _FirstPageState extends State<FirstPage> {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 12),
                                 width: sWidth,
-                                height: sHeight * 0.34,
+                                height: 300,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   color: const Color(0xffE0E8F9),
