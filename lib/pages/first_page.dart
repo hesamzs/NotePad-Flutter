@@ -30,7 +30,7 @@ class FirstPage extends StatefulWidget {
 
 
 class _FirstPageState extends State<FirstPage> {
-  bool isDrawerOpen = true;
+  bool isDrawerOpen = false;
 
   final now = DateTime.now();
   final months = [
