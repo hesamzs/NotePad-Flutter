@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:notepad/pages/first_page.dart';
+import 'package:notepad/pages/task_page/task_page.dart';
 import 'package:notepad/pages/welcome_page.dart';
 
 void main() {
@@ -15,9 +17,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'NotePad',
-      home:  FirstImage(),
+      home:  TaskPage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -26,4 +28,5 @@ class MyApp extends StatelessWidget {
 // FirstImage() For Final App
 // HomePage() For Welcome Page
 // FirstPage() For First Page
+
 

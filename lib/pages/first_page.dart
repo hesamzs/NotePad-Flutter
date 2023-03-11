@@ -8,6 +8,7 @@ import 'package:notepad/models/recent_model.dart';
 import 'package:notepad/widget/text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../widget/date_widget.dart';
 import 'drawer_page.dart';
 
 class FirstPageRoute extends CupertinoPageRoute {
@@ -31,31 +32,8 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   bool isDrawerOpen = false;
+  final date = getDate();
 
-  final now = DateTime.now();
-  final months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  final days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
   var _key = GlobalKey();
 
 
@@ -96,7 +74,7 @@ class _FirstPageState extends State<FirstPage> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   AppText(
-                                      text: now.day.toString(),
+                                      text: date.getDayNum(),
                                       size: 36,
                                       color: const Color(0xff2A135A),
                                       fontWeight: FontWeight.bold),
@@ -108,12 +86,12 @@ class _FirstPageState extends State<FirstPage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         AppText(
-                                            text: months[now.month - 1],
+                                            text: date.getMonth(),
                                             size: 16,
                                             color: const Color(0xff2A135A),
                                             fontWeight: FontWeight.bold),
                                         AppText(
-                                          text: days[now.weekday - 1],
+                                          text: date.getDay(),
                                           size: 12,
                                           color: const Color(0xff2A135A),
                                           fontWeight: FontWeight.bold,

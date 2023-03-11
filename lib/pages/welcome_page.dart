@@ -23,6 +23,7 @@ class _FirstImageState extends State<FirstImage> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -78,8 +79,9 @@ class _HomePageState extends State<HomePage> {
                 controller: pageController,
                 scrollDirection: Axis.horizontal,
                 itemCount: 3,
-                physics: const BouncingScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
+
                   if (index.toInt() == 2) {
                     return Column(
                       children: [
@@ -204,8 +206,8 @@ class _HomePageState extends State<HomePage> {
                                     delay: const Duration(milliseconds: 100),
                                     child: GestureDetector(
                                       onTap: () {
-                                        Navigator.of(context).push(new FirstPageRoute());
-
+                                        Navigator.of(context)
+                                            .push(FirstPageRoute());
                                       },
                                       child: Container(
                                         width: sWidth * 0.4,
@@ -424,21 +426,18 @@ class _HomePageState extends State<HomePage> {
                 }),
           )),
     );
-
-
   }
-  FadeInRight closebtn (sWidth){
+
+  FadeInRight closebtn(sWidth) {
     return FadeInRight(
       delay: const Duration(milliseconds: 100),
       child: GestureDetector(
-        onTap: () =>
-            Timer(const Duration(milliseconds: 300), () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => const FirstPage()));
-            }),
+        onTap: () => Timer(const Duration(milliseconds: 300), () {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const FirstPage()));
+        }),
         child: Container(
-          padding: const EdgeInsets.symmetric(
-              horizontal: 15, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           alignment: AlignmentDirectional.centerEnd,
           width: sWidth,
           child: Image.asset(
