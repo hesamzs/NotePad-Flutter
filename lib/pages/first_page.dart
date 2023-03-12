@@ -5,6 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:notepad/models/category_model.dart';
 import 'package:notepad/models/recent_model.dart';
+import 'package:notepad/pages/task_page/task_page.dart';
 import 'package:notepad/widget/text_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -29,13 +30,11 @@ class FirstPage extends StatefulWidget {
   State<FirstPage> createState() => _FirstPageState();
 }
 
-
 class _FirstPageState extends State<FirstPage> {
   bool isDrawerOpen = false;
   final date = getDate();
 
   var _key = GlobalKey();
-
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +52,17 @@ class _FirstPageState extends State<FirstPage> {
                   height: sHeight,
                   child: AnimatedContainer(
                     alignment: Alignment.center,
-                    transform: Matrix4.translationValues(isDrawerOpen
-                        ? sWidth / -1.2 : 0, 0, 0)
+                    transform: Matrix4.translationValues(
+                        isDrawerOpen ? sWidth / -1.2 : 0, 0, 0)
                       ..scale(1.00),
                     duration: const Duration(milliseconds: 200),
                     decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
                     child: SingleChildScrollView(
-                      physics: isDrawerOpen ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
+                      physics: isDrawerOpen
+                          ? const NeverScrollableScrollPhysics()
+                          : const BouncingScrollPhysics(),
                       child: Column(
                         children: [
                           // App Bar ----
@@ -103,12 +104,14 @@ class _FirstPageState extends State<FirstPage> {
                                   GestureDetector(
                                     onTap: () {
                                       isDrawerOpen
-                                          ? setState((){isDrawerOpen = false;})
-                                          : setState((){
-                                        isDrawerOpen = true;
-                                        Scrollable.ensureVisible(_key.currentContext!);
-                                      });
-
+                                          ? setState(() {
+                                              isDrawerOpen = false;
+                                            })
+                                          : setState(() {
+                                              isDrawerOpen = true;
+                                              Scrollable.ensureVisible(
+                                                  _key.currentContext!);
+                                            });
                                     },
                                     child: SizedBox(
                                         width: sWidth * 0.1,
@@ -183,7 +186,7 @@ class _FirstPageState extends State<FirstPage> {
                                 shrinkWrap: true,
                                 itemCount: categoryComponents.length,
                                 gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: sWidth > 270 ? 2 : 1,
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10,
@@ -200,267 +203,287 @@ class _FirstPageState extends State<FirstPage> {
                                     child: SlideAnimation(
                                       verticalOffset: 200.0,
                                       child: FadeInAnimation(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Color(categoryModel.color),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color:
-                                                    Color(categoryModel.color),
-                                                blurRadius: 4.0,
-                                                offset: const Offset(
-                                                  1,
-                                                  2,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          child: Stack(
-                                            children: [
-                                              Column(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            10.0),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                            color: Color(
-                                                                categoryModel
-                                                                    .darkcolor),
-                                                            boxShadow: [
-                                                              BoxShadow(
-                                                                color: Color(
-                                                                    categoryModel
-                                                                        .darkcolor),
-                                                                blurRadius: 4.0,
-                                                                offset:
-                                                                    const Offset(
-                                                                  1,
-                                                                  2,
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                          width: sWidth > 270 ? sWidth * 0.18 : 60 ,
-                                                          height: 60,
-                                                          child: Padding(
-                                                            padding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        sWidth *
-                                                                            0.02,
-                                                                    vertical:
-                                                                        8),
-                                                            child: SvgPicture
-                                                                .asset(
-                                                              categoryModel
-                                                                  .imageUrl,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => TaskPage(
+                                                    name: categoryModel.title
+                                                        .toString()),
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Color(categoryModel.color),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Color(
+                                                      categoryModel.color),
+                                                  blurRadius: 4.0,
+                                                  offset: const Offset(
+                                                    1,
+                                                    2,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            child: Stack(
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10.0),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5),
                                                               color: Color(
                                                                   categoryModel
-                                                                      .logocolor),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Column(
-                                                          children: [
-                                                            Container(
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              16),
+                                                                      .darkcolor),
+                                                              boxShadow: [
+                                                                BoxShadow(
                                                                   color: Color(
                                                                       categoryModel
                                                                           .darkcolor),
-                                                                  boxShadow: [
-                                                                    BoxShadow(
-                                                                      color: Color(
-                                                                          categoryModel
-                                                                              .darkcolor),
-                                                                      blurRadius:
-                                                                          6.0,
-                                                                      offset:
-                                                                          const Offset(
-                                                                        0,
-                                                                        3,
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                width: 30,
-                                                                height: 30,
-                                                                child: Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .symmetric(
+                                                                  blurRadius:
+                                                                      4.0,
+                                                                  offset:
+                                                                      const Offset(
+                                                                    1,
+                                                                    2,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                            width: sWidth > 270
+                                                                ? sWidth * 0.18
+                                                                : 60,
+                                                            height: 60,
+                                                            child: Padding(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          sWidth *
+                                                                              0.02,
                                                                       vertical:
-                                                                          7.0),
-                                                                  child: Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: [
-                                                                      Container(
-                                                                        width:
-                                                                            4,
-                                                                        height:
-                                                                            4,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(15),
-                                                                          color:
-                                                                              Color(categoryModel.logocolor),
+                                                                          8),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                categoryModel
+                                                                    .imageUrl,
+                                                                color: Color(
+                                                                    categoryModel
+                                                                        .logocolor),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Column(
+                                                            children: [
+                                                              Container(
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            16),
+                                                                    color: Color(
+                                                                        categoryModel
+                                                                            .darkcolor),
+                                                                    boxShadow: [
+                                                                      BoxShadow(
+                                                                        color: Color(
+                                                                            categoryModel.darkcolor),
+                                                                        blurRadius:
+                                                                            6.0,
+                                                                        offset:
+                                                                            const Offset(
+                                                                          0,
+                                                                          3,
                                                                         ),
-                                                                      ),
-                                                                      Container(
-                                                                        width:
-                                                                            4,
-                                                                        height:
-                                                                            4,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(15),
-                                                                          color:
-                                                                              Color(categoryModel.logocolor),
-                                                                        ),
-                                                                      ),
-                                                                      Container(
-                                                                        width:
-                                                                            4,
-                                                                        height:
-                                                                            4,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(15),
-                                                                          color:
-                                                                              Color(categoryModel.logocolor),
-                                                                        ),
-                                                                      ),
+                                                                      )
                                                                     ],
                                                                   ),
-                                                                )),
-                                                          ],
-                                                        )
-                                                      ],
+                                                                  width: 30,
+                                                                  height: 30,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .symmetric(
+                                                                        vertical:
+                                                                            7.0),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Container(
+                                                                          width:
+                                                                              4,
+                                                                          height:
+                                                                              4,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(15),
+                                                                            color:
+                                                                                Color(categoryModel.logocolor),
+                                                                          ),
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              4,
+                                                                          height:
+                                                                              4,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(15),
+                                                                            color:
+                                                                                Color(categoryModel.logocolor),
+                                                                          ),
+                                                                        ),
+                                                                        Container(
+                                                                          width:
+                                                                              4,
+                                                                          height:
+                                                                              4,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(15),
+                                                                            color:
+                                                                                Color(categoryModel.logocolor),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  )),
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      left: sWidth > 270 ? sWidth * 0.03 : sWidth * 0.05,
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          children: [
-                                                            SizedBox(
-                                                              width: 80,
-                                                              height: 25,
-                                                              child: AppText(
-                                                                  text:
-                                                                      categoryModel
-                                                                          .title,
-                                                                  size: 22,
-                                                                  color: Color(
-                                                                      categoryModel
-                                                                          .logocolor),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                            SizedBox(
-                                                              width: 80,
-                                                              height: 25,
-                                                              child: AppText(
-                                                                  text: categoryModel
-                                                                      .description,
-                                                                  size: 4,
-                                                                  color: Color(
-                                                                      categoryModel
-                                                                          .logocolor),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Positioned(
-                                                right: sWidth > 270 ? sWidth * -0.05 : sWidth * -0.02,
-                                                top: 70,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                          15, 0, 15.0, 15),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          color: Color(
-                                                              categoryModel
-                                                                  .darkcolor),
-                                                          blurRadius: 40.0,
-                                                          offset: const Offset(
-                                                            0,
-                                                            0,
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: sWidth > 270
+                                                            ? sWidth * 0.03
+                                                            : sWidth * 0.05,
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Column(
+                                                            children: [
+                                                              SizedBox(
+                                                                width: 80,
+                                                                height: 25,
+                                                                child: AppText(
+                                                                    text: categoryModel
+                                                                        .title,
+                                                                    size: 22,
+                                                                    color: Color(
+                                                                        categoryModel
+                                                                            .logocolor),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              ),
+                                                              SizedBox(
+                                                                width: 80,
+                                                                height: 25,
+                                                                child: AppText(
+                                                                    text: categoryModel
+                                                                        .description,
+                                                                    size: 4,
+                                                                    color: Color(
+                                                                        categoryModel
+                                                                            .logocolor),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              )
+                                                            ],
                                                           ),
-                                                        )
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
-                                                    width: 55,
-                                                    height: 55,
-                                                    child: Transform(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      transform:
-                                                          Matrix4.rotationY(
-                                                              categoryModel
-                                                                  .rotate),
+                                                  ],
+                                                ),
+                                                Positioned(
+                                                  right: sWidth > 270
+                                                      ? sWidth * -0.05
+                                                      : sWidth * -0.02,
+                                                  top: 70,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets
+                                                            .fromLTRB(
+                                                        15, 0, 15.0, 15),
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            color: Color(
+                                                                categoryModel
+                                                                    .darkcolor),
+                                                            blurRadius: 40.0,
+                                                            offset:
+                                                                const Offset(
+                                                              0,
+                                                              0,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      width: 55,
+                                                      height: 55,
                                                       child: Transform(
+                                                        alignment:
+                                                            Alignment.center,
                                                         transform:
-                                                            Matrix4.rotationZ(
-                                                                -0.29),
-                                                        child: SvgPicture.asset(
-                                                          categoryModel
-                                                              .imageUrl,
-                                                          color: Color(
-                                                              categoryModel
-                                                                  .lightcolor),
+                                                            Matrix4.rotationY(
+                                                                categoryModel
+                                                                    .rotate),
+                                                        child: Transform(
+                                                          transform:
+                                                              Matrix4.rotationZ(
+                                                                  -0.29),
+                                                          child:
+                                                              SvgPicture.asset(
+                                                            categoryModel
+                                                                .imageUrl,
+                                                            color: Color(
+                                                                categoryModel
+                                                                    .lightcolor),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

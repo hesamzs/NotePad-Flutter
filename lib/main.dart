@@ -19,14 +19,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NotePad',
-      home:  TaskPage(),
+      home:  TaskPage(name:'s'),
+      theme: ThemeData(brightness: Brightness.light),
       debugShowCheckedModeBanner: false,
     );
   }
-
 }
 // FirstImage() For Final App
 // HomePage() For Welcome Page
 // FirstPage() For First Page
+
+
+
 
 

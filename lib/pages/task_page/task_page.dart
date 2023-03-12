@@ -1,10 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:notepad/models/task_notif_model.dart';
 import 'package:notepad/widget/date_widget.dart';
 import 'package:notepad/widget/text_widget.dart';
 
+import '../../models/task_type_model.dart';
+
 class TaskPage extends StatefulWidget {
-  const TaskPage({Key? key}) : super(key: key);
+  const TaskPage({Key? key, required this.name}) : super(key: key);
+
+  final name;
 
   @override
   State<TaskPage> createState() => _TaskPageState();
@@ -12,147 +18,237 @@ class TaskPage extends StatefulWidget {
 
 class _TaskPageState extends State<TaskPage> {
   final date = getDate();
-  int isTrue = 0;
 
   @override
   Widget build(BuildContext context) {
     var sWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: Column(
-        children: [
-          Row(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color(0xffF1F5FD),
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
             children: [
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0xff2A135A),
+                              blurRadius: 16.0,
+                              offset: Offset(
+                                0,
+                                0,
+                              ),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(50),
+                          color: const Color(0xff2A135A),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(
+                            Icons.arrow_back_ios_new_sharp,
+                            color: Color(0xffF1F5FD),
+                            size: 20,
+                            shadows: [
+                              Shadow(
+                                color: Color(0xffF1F5FD),
+                                blurRadius: 6.0,
+                                offset: Offset(
+                                  -1,
+                                  0,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        AppText(
+                          text: sWidth < 240 ? " " : widget.name,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xff2A135A),
+                          size: 20,
+                        ),
+                        AppText(
+                            text: sWidth < 240
+                                ? " "
+                                : "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
+                            size: 12,
+                            color: const Color(0xff2A135A).withOpacity(0.7),
+                            fontWeight: FontWeight.bold),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0xff2A135A),
+                              blurRadius: 16.0,
+                              offset: Offset(
+                                0,
+                                0,
+                              ),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(50),
+                          color: const Color(0xff2A135A),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: SvgPicture.asset(
+                            "assets/images/chart.svg",
+                            color: const Color(0xffF1F5FD),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: sWidth > 239 ? 20 : 0,
+              ),
+              _MiddleAppBar(widget.name),
+              Container(
+                width: sWidth * 0.9,
+                height: 130,
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _CreateNotifBox(),
+                ),
+              ),
+              Container(
+                width: sWidth * 0.9,
+                height: 250,
+                color: Colors.transparent,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: _TasksType(),
+                ),
+              ),
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: Container(
-                  width: 40,
-                  height: 40,
+                  width: sWidth,
+                  height: 2,
                   decoration: BoxDecoration(
-                    boxShadow: const [
+                    color: const Color(0xff2A135A),
+                    boxShadow: [
                       BoxShadow(
-                        color: Color(0xff2A135A),
-                        blurRadius: 16.0,
-                        offset: Offset(
-                          0,
-                          0,
+                        color: const Color(0xff422D70).withOpacity(0.7),
+                        blurRadius: 6.0,
+                        offset: const Offset(
+                          2,
+                          3,
                         ),
                       ),
                     ],
                     borderRadius: BorderRadius.circular(50),
-                    color: const Color(0xff2A135A),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _TasksType() {
+    return List.generate(4, (index) {
+      TaskTypeModel current = taskTypeModel[index];
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+        child: Container(
+          height: 50,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xff685492),
+                Color(0xff2A135A),
+              ],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xff422D70).withOpacity(0.7),
+                blurRadius: 6.0,
+                offset: const Offset(
+                  2,
+                  3,
+                ),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: SizedBox(
+                  width: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
                     child: Icon(
-                      Icons.arrow_back_ios_new_sharp,
-                      color: Color(0xffF1F5FD),
-                      size: 20,
-                      shadows: [
-                        Shadow(
-                          color: Color(0xffF1F5FD),
-                          blurRadius: 6.0,
-                          offset: Offset(
-                            -1,
-                            0,
-                          ),
-                        )
-                      ],
+                      current.logo,
+                      color: const Color(0xffF1F5FD),
                     ),
                   ),
                 ),
               ),
               Expanded(
-                child: Column(
-                  children: [
-                    AppText(
-                      text: sWidth < 240 ? " " : 'Study',
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xff2A135A),
-                      size: 20,
-                    ),
-                    AppText(
-                        text: sWidth < 240
-                            ? " "
-                            : "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
-                        size: 12,
-                        color: const Color(0xff2A135A).withOpacity(0.7),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 6.0),
+                  child: SizedBox(
+                    width: 50,
+                    child: AppText(
+                        text: current.title,
+                        size: 16,
+                        color: const Color(0xffF1F5FD),
                         fontWeight: FontWeight.bold),
-                  ],
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0xff2A135A),
-                        blurRadius: 16.0,
-                        offset: Offset(
-                          0,
-                          0,
-                        ),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(50),
-                    color: const Color(0xff2A135A),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Icon(
-                      Icons.calendar_month_sharp,
-                      color: Color(0xffF1F5FD),
-                      size: 20,
-                      shadows: [
-                        Shadow(
-                          color: Color(0xffF1F5FD),
-                          blurRadius: 5.0,
-                          offset: Offset(
-                            -1,
-                            0,
-                          ),
-                        ),
-                      ],
+                padding: const EdgeInsets.only(right: 5),
+                child: SizedBox(
+                  width: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: SvgPicture.asset(
+                      "assets/images/arrow-right.svg",
+                      color: const Color(0xffF1F5FD),
                     ),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(
-            height: sWidth > 239 ? 20 : 0,
-          ),
-          _MiddleAppBar(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: SizedBox(
-              width: sWidth,
-              height: 60,
-              child: sWidth > 450
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: _CreateList(),
-                    )
-                  : _CreateListView(),
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            width: sWidth * 0.9,
-            height: 130,
-            color: Colors.transparent,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: _CreateNotifBox(),
-            ),
-          ),
-        ],
-      ),
-    );
+        ),
+      );
+    });
   }
 
   List<Widget> _CreateNotifBox() {
@@ -228,15 +324,15 @@ class _TaskPageState extends State<TaskPage> {
     });
   }
 
-  Widget _MiddleAppBar() {
+  Widget _MiddleAppBar(String name) {
     var sWidth = MediaQuery.of(context).size.width;
     return sWidth < 239
         ? Column(
             children: [
-              const AppText(
-                text: 'Study',
+              AppText(
+                text: name,
                 fontWeight: FontWeight.bold,
-                color: Color(0xff2A135A),
+                color: const Color(0xff2A135A),
                 size: 20,
               ),
               AppText(
@@ -251,132 +347,5 @@ class _TaskPageState extends State<TaskPage> {
             ],
           )
         : Container();
-  }
-
-  List<Widget> _CreateList() {
-    return List.generate(
-      7,
-      (index) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 8.0, bottom: 8),
-          child: GestureDetector(
-            onTap: () {
-              print(index);
-              setState(() {
-                isTrue = index;
-              });
-            },
-            child: Container(
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(
-                    color: const Color(0xff2A135A).withOpacity(0.7), width: 2),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xff2A135A).withOpacity(0.3),
-                    blurRadius: 3.0,
-                    offset: const Offset(
-                      2,
-                      3,
-                    ),
-                  ),
-                ],
-                color: isTrue == index
-                    ? const Color(0xff2A135A)
-                    : const Color(0xffF1F5FD),
-              ),
-              child: Column(
-                children: [
-                  Expanded(child: Container()),
-                  Center(
-                      child: AppText(
-                          text: date.getDayShort(index),
-                          size: 5,
-                          color: isTrue == index
-                              ? const Color(0xffF1F5FD)
-                              : const Color(0xff2A135A),
-                          fontWeight: FontWeight.bold)),
-                  Center(
-                    child: AppText(
-                        text: date.getDayNumWeek(index),
-                        size: 18,
-                        color: isTrue == index
-                            ? const Color(0xffF1F5FD)
-                            : const Color(0xff2A135A),
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Expanded(child: Container()),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _CreateListView() {
-    return ListView.builder(
-      itemCount: 7,
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 8.0, bottom: 8),
-          child: GestureDetector(
-            onTap: () {
-              print(index);
-              setState(() {
-                isTrue = index;
-              });
-            },
-            child: Container(
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(
-                    color: const Color(0xff2A135A).withOpacity(0.7), width: 2),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xff2A135A).withOpacity(0.3),
-                    blurRadius: 3.0,
-                    offset: const Offset(
-                      2,
-                      3,
-                    ),
-                  ),
-                ],
-                color: isTrue == index
-                    ? const Color(0xff2A135A)
-                    : const Color(0xffF1F5FD),
-              ),
-              child: Column(
-                children: [
-                  Expanded(child: Container()),
-                  Center(
-                      child: AppText(
-                          text: date.getDayShort(index),
-                          size: 5,
-                          color: isTrue == index
-                              ? const Color(0xffF1F5FD)
-                              : const Color(0xff2A135A),
-                          fontWeight: FontWeight.bold)),
-                  Center(
-                    child: AppText(
-                        text: date.getDayNumWeek(index),
-                        size: 18,
-                        color: isTrue == index
-                            ? const Color(0xffF1F5FD)
-                            : const Color(0xff2A135A),
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Expanded(child: Container()),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
   }
 }

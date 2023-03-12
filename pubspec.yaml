@@ -19,6 +19,8 @@ dependencies:
   google_fonts: ^4.0.3
   flutter_switch: ^0.3.2
 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

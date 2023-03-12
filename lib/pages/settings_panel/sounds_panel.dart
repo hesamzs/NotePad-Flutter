@@ -22,7 +22,6 @@ class _SoundsPanelState extends State<SoundsPanel> {
           print('clicked');
         },
         child: Row(
-
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
@@ -60,7 +59,7 @@ class _SoundsPanelState extends State<SoundsPanel> {
             ),
             Column(
               children: [
-                SizedBox(height: 4,),
+                const SizedBox(height: 4,),
                 SizedBox(
                   // color: Colors.black,
                   child: FlutterSwitch(
