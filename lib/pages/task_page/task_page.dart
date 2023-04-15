@@ -29,106 +29,7 @@ class _TaskPageState extends State<TaskPage> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0xff2A135A),
-                              blurRadius: 16.0,
-                              offset: Offset(
-                                0,
-                                0,
-                              ),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(50),
-                          color: const Color(0xff2A135A),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Icon(
-                            Icons.arrow_back_ios_new_sharp,
-                            color: Color(0xffF1F5FD),
-                            size: 20,
-                            shadows: [
-                              Shadow(
-                                color: Color(0xffF1F5FD),
-                                blurRadius: 6.0,
-                                offset: Offset(
-                                  -1,
-                                  0,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        AppText(
-                          text: sWidth < 240 ? " " : widget.name,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xff2A135A),
-                          size: 20,
-                        ),
-                        AppText(
-                            text: sWidth < 240
-                                ? " "
-                                : "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
-                            size: 12,
-                            color: const Color(0xff2A135A).withOpacity(0.7),
-                            fontWeight: FontWeight.bold),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0xff2A135A),
-                              blurRadius: 16.0,
-                              offset: Offset(
-                                0,
-                                0,
-                              ),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(50),
-                          color: const Color(0xff2A135A),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: SvgPicture.asset(
-                            "assets/images/chart.svg",
-                            color: const Color(0xffF1F5FD),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: sWidth > 239 ? 20 : 0,
-              ),
-              _MiddleAppBar(widget.name),
+              AppBar(sWidth, widget.name),
               Container(
                 width: sWidth * 0.9,
                 height: 130,
@@ -175,76 +76,191 @@ class _TaskPageState extends State<TaskPage> {
     );
   }
 
+  Widget AppBar(double sWidth, String name) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0xff2A135A),
+                        blurRadius: 16.0,
+                        offset: Offset(
+                          0,
+                          0,
+                        ),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(50),
+                    color: const Color(0xff2A135A),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(
+                      Icons.arrow_back_ios_new_sharp,
+                      color: Color(0xffF1F5FD),
+                      size: 20,
+                      shadows: [
+                        Shadow(
+                          color: Color(0xffF1F5FD),
+                          blurRadius: 6.0,
+                          offset: Offset(
+                            -1,
+                            0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  AppText(
+                    text: sWidth < 240 ? " " : widget.name,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xff2A135A),
+                    size: 20,
+                  ),
+                  AppText(
+                      text: sWidth < 240
+                          ? " "
+                          : "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
+                      size: 12,
+                      color: const Color(0xff2A135A).withOpacity(0.7),
+                      fontWeight: FontWeight.bold),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0xff2A135A),
+                        blurRadius: 16.0,
+                        offset: Offset(
+                          0,
+                          0,
+                        ),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(50),
+                    color: const Color(0xff2A135A),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: SvgPicture.asset(
+                      "assets/images/chart.svg",
+                      color: const Color(0xffF1F5FD),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: sWidth > 239 ? 20 : 0,
+        ),
+        _MiddleAppBar(widget.name),
+      ],
+    );
+  }
+
+
   List<Widget> _TasksType() {
     return List.generate(4, (index) {
       TaskTypeModel current = taskTypeModel[index];
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-        child: Container(
-          height: 50,
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xff685492),
-                Color(0xff2A135A),
-              ],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xff422D70).withOpacity(0.7),
-                blurRadius: 6.0,
-                offset: const Offset(
-                  2,
-                  3,
-                ),
+      return GestureDetector(
+        onTap: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => current.className),
+          );        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+          child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xff685492),
+                  Color(0xff2A135A),
+                ],
               ),
-            ],
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: SizedBox(
-                  width: 50,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Icon(
-                      current.logo,
-                      color: const Color(0xffF1F5FD),
-                    ),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xff422D70).withOpacity(0.7),
+                  blurRadius: 6.0,
+                  offset: const Offset(
+                    2,
+                    3,
                   ),
                 ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 6.0),
+              ],
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: SizedBox(
                     width: 50,
-                    child: AppText(
-                        text: current.title,
-                        size: 16,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Icon(
+                        current.logo,
                         color: const Color(0xffF1F5FD),
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: SizedBox(
-                  width: 50,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: SvgPicture.asset(
-                      "assets/images/arrow-right.svg",
-                      color: const Color(0xffF1F5FD),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 6.0),
+                    child: SizedBox(
+                      width: 50,
+                      child: AppText(
+                          text: current.title,
+                          size: 16,
+                          color: const Color(0xffF1F5FD),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: SizedBox(
+                    width: 50,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: SvgPicture.asset(
+                        "assets/images/arrow-right.svg",
+                        color: const Color(0xffF1F5FD),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );
