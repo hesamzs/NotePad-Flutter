@@ -42,6 +42,14 @@ class getDate {
     return (DateTimeRange(start: now, end: DateTime(now.year, now.month + 1)).duration.inDays);
   }
 
+  String createDate (DateTime time){
+    String date = "${months[time.month - 1]} ${time.day},${time.year}";
+    if(time.day == now.day && time.month == now.month && time.year == now.year){
+      date = "Today";
+    }
+    return date;
+
+  }
   String getDayShort (int num){
     int setDay;
     if (now.weekday -1 + num < 7){
@@ -56,7 +64,6 @@ class getDate {
     var tomorrow = DateTime(now.year, now.month, now.day + num);
     return tomorrow.day.toString();
   }
-
   String getDay (){
     return days[now.weekday - 1];
   }

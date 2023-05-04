@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notepad/widget/taskpage_appbar_widget.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../widget/date_widget.dart';
@@ -18,165 +19,127 @@ class _ToDoListPageState extends State<ToDoListPage> {
 
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
-
+  String _showselectedDay = getDate().createDate(getDate().now);
+  bool checkbox = false;
 
   @override
   Widget build(BuildContext context) {
     var sWidth = MediaQuery.of(context).size.width;
+    var sHeight = MediaQuery.of(context).size.height;
 
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              TypesAppBar(sWidth, widget.name),
-              TableCalendar(
-                firstDay: DateTime(2023),
-                lastDay: DateTime(2025),
-                focusedDay: _focusedDay,
-                rowHeight: 40,
-                headerStyle: const HeaderStyle(
-                  titleCentered: true,
-                  formatButtonVisible: false,
-                ),
-                calendarStyle: const CalendarStyle(
-                    weekendTextStyle: TextStyle(color: Colors.red)),
-                startingDayOfWeek: StartingDayOfWeek.monday,
-                calendarFormat: CalendarFormat.week,
-                selectedDayPredicate: (day) {
-                  return isSameDay(_selectedDay, day);
-                },
-                onDaySelected: (selectedDay, focusedDay) {
-                  if (!isSameDay(_selectedDay, selectedDay)) {
-                    setState(
-                      () {
-                        _selectedDay = selectedDay;
-                        _focusedDay = focusedDay;
-                        print(selectedDay);
-                      },
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TaskPageAppbar(sWidth, widget.name, context),
+            TableCalendarWidget(),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: AppText(
+                text: _showselectedDay,
+                size: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: 50,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 2),
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color(0xff685492),
+                              Color(0xff2A135A),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 30,
+                              child: Padding(
+                                padding: EdgeInsets.all(12),
+                                child: Checkbox(
+                                  value: checkbox,
+                                  checkColor: Colors.greenAccent,
+                                  activeColor: Colors.red,
+                                  onChanged: (bool? value) {
+                                    checkbox == value;
+                                  },
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                color: Colors.blue,
+                              ),
+                            ),
+                            Container(
+                              width: 30,
+                              color: Colors.pink,
+                            ),
+                            Container(
+                              width: 30,
+                              color: Colors.brown,
+                            ),
+                          ],
+                        ),
+                      ),
                     );
-                  }
-                },
-                onPageChanged: (focusedDay) {
-                  _focusedDay = focusedDay;
-                },
-              )
-            ],
-          ),
+                  }),
+            ),
+            Container(
+              height: 60,
+              width: sWidth,
+              color: Colors.blue,
+            )
+          ],
         ),
       ),
     );
   }
 
-  Widget TypesAppBar(double sWidth, String name) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0xff2A135A),
-                        blurRadius: 16.0,
-                        offset: Offset(
-                          0,
-                          0,
-                        ),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(50),
-                    color: const Color(0xff2A135A),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Icon(
-                      Icons.arrow_back_ios_new_sharp,
-                      color: Color(0xffF1F5FD),
-                      size: 20,
-                      shadows: [
-                        Shadow(
-                          color: Color(0xffF1F5FD),
-                          blurRadius: 6.0,
-                          offset: Offset(
-                            -1,
-                            0,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  AppText(
-                    text: sWidth < 240 ? " " : widget.name,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xff2A135A),
-                    size: 20,
-                  ),
-                  AppText(
-                      text: sWidth < 240
-                          ? " "
-                          : "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
-                      size: 12,
-                      color: const Color(0xff2A135A).withOpacity(0.7),
-                      fontWeight: FontWeight.bold),
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: const Padding(
-                padding: EdgeInsets.all(16),
-                child: SizedBox(
-                  width: 40,
-                  height: 40,
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-
-        _MiddleAppBar(widget.name),
-      ],
+  Widget TableCalendarWidget() {
+    return TableCalendar(
+      firstDay: DateTime(2023),
+      lastDay: DateTime(2025),
+      focusedDay: _focusedDay,
+      rowHeight: 40,
+      headerStyle: const HeaderStyle(
+        titleCentered: true,
+        formatButtonVisible: false,
+      ),
+      calendarStyle:
+          const CalendarStyle(weekendTextStyle: TextStyle(color: Colors.red)),
+      startingDayOfWeek: StartingDayOfWeek.monday,
+      calendarFormat: CalendarFormat.week,
+      selectedDayPredicate: (day) {
+        return isSameDay(_selectedDay, day);
+      },
+      onDaySelected: (selectedDay, focusedDay) {
+        if (!isSameDay(_selectedDay, selectedDay)) {
+          setState(
+            () {
+              _showselectedDay = date.createDate(selectedDay);
+              _selectedDay = selectedDay;
+              _focusedDay = focusedDay;
+            },
+          );
+        }
+      },
+      onPageChanged: (focusedDay) {
+        _focusedDay = focusedDay;
+      },
     );
-  }
-
-  Widget _MiddleAppBar(String name) {
-    var sWidth = MediaQuery.of(context).size.width;
-    return sWidth < 239
-        ? Column(
-            children: [
-              AppText(
-                text: name,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xff2A135A),
-                size: 20,
-              ),
-              AppText(
-                  text:
-                      "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
-                  size: 12,
-                  color: const Color(0xff2A135A).withOpacity(0.7),
-                  fontWeight: FontWeight.bold),
-              const SizedBox(
-                height: 20,
-              )
-            ],
-          )
-        : Container();
   }
 }

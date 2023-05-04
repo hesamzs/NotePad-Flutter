@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NotePad',
-      home:  FirstPage(),
+      home:  ToDoListPage(name: 'test',),
       theme: ThemeData(brightness: Brightness.light),
       debugShowCheckedModeBanner: false,
     );
