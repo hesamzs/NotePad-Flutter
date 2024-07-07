@@ -28,8 +28,8 @@ class ContactUs extends StatelessWidget {
             );
           } else {
             return GestureDetector(
-              onTap: () {
-                print('copied${current[1]}');
+              onTap: () async {
+                await Clipboard.setData(ClipboardData(text: current[1]));
               },
               child: SizedBox(
                 height: 25,
@@ -39,11 +39,7 @@ class ContactUs extends StatelessWidget {
                     Expanded(
                       child: Container(
                         color: Colors.transparent,
-                        child: AppText(
-                            text: current[0],
-                            size: 12,
-                            color: const Color(0xffF1F5FD),
-                            fontWeight: FontWeight.bold),
+                        child: AppText(text: current[0], size: 12, color: const Color(0xffF1F5FD), fontWeight: FontWeight.bold),
                       ),
                     ),
                     const Icon(

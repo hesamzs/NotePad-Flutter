@@ -79,9 +79,8 @@ class _HomePageState extends State<HomePage> {
                 controller: pageController,
                 scrollDirection: Axis.horizontal,
                 itemCount: 3,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-
                   if (index.toInt() == 2) {
                     return Column(
                       children: [

@@ -2,12 +2,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:notepad/models/category_model.dart';
 import 'package:notepad/models/recent_model.dart';
 import 'package:notepad/pages/task_page/task_page.dart';
 import 'package:notepad/widget/text_widget.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../widget/date_widget.dart';
 import 'drawer_page.dart';
@@ -34,7 +34,7 @@ class _FirstPageState extends State<FirstPage> {
   bool isDrawerOpen = false;
   final date = getDate();
 
-  var _key = GlobalKey();
+  final _key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -46,23 +46,19 @@ class _FirstPageState extends State<FirstPage> {
         backgroundColor: const Color(0xffF1F5FD),
         body: Stack(
           children: [
-            DrawerScreen(),
+            const DrawerScreen(),
             SizedBox(
               width: sWidth,
               height: sHeight,
               child: AnimatedContainer(
                 alignment: Alignment.center,
-                transform: Matrix4.translationValues(
-                    isDrawerOpen ? sWidth / -1.2 : 0, 0, 0)
-                  ..scale(1.00),
+                transform: Matrix4.translationValues(isDrawerOpen ? sWidth / -1.2 : 0, 0, 0)..scale(1.00),
                 duration: const Duration(milliseconds: 200),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
                 child: SingleChildScrollView(
-                  physics: isDrawerOpen
-                      ? const NeverScrollableScrollPhysics()
-                      : const BouncingScrollPhysics(),
+                  physics: isDrawerOpen ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
                   child: Column(
                     children: [
                       // App Bar ----

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:notepad/pages/first_page.dart';
-import 'package:notepad/pages/task_page/task_page.dart';
-import 'package:notepad/pages/task_page/todo_list_page.dart';
 import 'package:notepad/pages/welcome_page.dart';
 
 void main() {
@@ -20,7 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NotePad',
-      home:  ToDoListPage(name: 'test',),
+      home: FirstImage(),
+      // home: FirstPage(),
+      // home:  const ToDoListPage(name: 'test',),
       theme: ThemeData(brightness: Brightness.light),
       debugShowCheckedModeBanner: false,
     );

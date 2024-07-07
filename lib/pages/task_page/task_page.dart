@@ -133,12 +133,11 @@ class _TaskPageState extends State<TaskPage> {
                     size: 20,
                   ),
                   AppText(
-                      text: sWidth < 240
-                          ? " "
-                          : "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
-                      size: 12,
-                      color: const Color(0xff2A135A).withOpacity(0.7),
-                      fontWeight: FontWeight.bold),
+                    text: sWidth < 240 ? " " : "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
+                    size: 12,
+                    color: const Color(0xff2A135A).withOpacity(0.7),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ],
               ),
             ),
@@ -183,88 +182,87 @@ class _TaskPageState extends State<TaskPage> {
     );
   }
 
-
   List<Widget> _TasksType() {
-    return List.generate(4, (index) {
-      TaskTypeModel current = taskTypeModel[index];
-      return GestureDetector(
-        onTap: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => current.className),
-          );        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-          child: Container(
-            height: 50,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xff685492),
-                  Color(0xff2A135A),
-                ],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xff422D70).withOpacity(0.7),
-                  blurRadius: 6.0,
-                  offset: const Offset(
-                    2,
-                    3,
-                  ),
+    return List.generate(
+      4,
+      (index) {
+        TaskTypeModel current = taskTypeModel[index];
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => current.className),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xff685492),
+                    Color(0xff2A135A),
+                  ],
                 ),
-              ],
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: SizedBox(
-                    width: 50,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Icon(
-                        current.logo,
-                        color: const Color(0xffF1F5FD),
-                      ),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xff422D70).withOpacity(0.7),
+                    blurRadius: 6.0,
+                    offset: const Offset(
+                      2,
+                      3,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 6.0),
+                ],
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: SizedBox(
                       width: 50,
-                      child: AppText(
-                          text: current.title,
-                          size: 16,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Icon(
+                          current.logo,
                           color: const Color(0xffF1F5FD),
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: SizedBox(
-                    width: 50,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: SvgPicture.asset(
-                        "assets/images/arrow-right.svg",
-                        color: const Color(0xffF1F5FD),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 6.0),
+                      child: SizedBox(
+                        width: 50,
+                        child: AppText(text: current.title, size: 16, color: const Color(0xffF1F5FD), fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: SizedBox(
+                      width: 50,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: SvgPicture.asset(
+                          "assets/images/arrow-right.svg",
+                          color: const Color(0xffF1F5FD),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   List<Widget> _CreateNotifBox() {
@@ -318,20 +316,12 @@ class _TaskPageState extends State<TaskPage> {
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: AppText(
-                      text: current.title,
-                      size: 16,
-                      color: const Color(0xffF1F5FD),
-                      fontWeight: FontWeight.bold),
+                  child: AppText(text: current.title, size: 16, color: const Color(0xffF1F5FD), fontWeight: FontWeight.bold),
                 ),
               ),
               Expanded(
                 flex: 2,
-                child: AppText(
-                    text: current.number,
-                    size: 30,
-                    color: const Color(0xffF1F5FD),
-                    fontWeight: FontWeight.bold),
+                child: AppText(text: current.number, size: 30, color: const Color(0xffF1F5FD), fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -351,12 +341,7 @@ class _TaskPageState extends State<TaskPage> {
                 color: const Color(0xff2A135A),
                 size: 20,
               ),
-              AppText(
-                  text:
-                      "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
-                  size: 12,
-                  color: const Color(0xff2A135A).withOpacity(0.7),
-                  fontWeight: FontWeight.bold),
+              AppText(text: "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}", size: 12, color: const Color(0xff2A135A).withOpacity(0.7), fontWeight: FontWeight.bold),
               const SizedBox(
                 height: 20,
               )
