@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/task_page/notes_page.dart';
+import '../pages/task_page/reminder_page.dart';
+import '../pages/task_page/stopwatch_page.dart';
 import '../pages/task_page/todo_list_page.dart';
 
 class TaskTypeModel {
@@ -28,18 +31,18 @@ List<TaskTypeModel> taskTypeModel = [
     title: "Stopwatch",
     id: 1,
     logo: Icons.timer_outlined,
-    className: Container(),
+    className: const StopwatchPage(),
   ),
   TaskTypeModel(
     title: "Reminder",
     id: 2,
     logo: Icons.notification_add_outlined,
-    className: Container(),
+    className: const ReminderPage(),
   ),
   TaskTypeModel(
     title: "Notes",
     id: 3,
     logo: Icons.note_add_outlined,
-    className: Container(),
+    className: const NotesPage(),
   ),
 ];

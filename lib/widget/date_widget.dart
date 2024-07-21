@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class getDate {
-
+class GetDate {
   final now = DateTime.now();
 
   final months = [

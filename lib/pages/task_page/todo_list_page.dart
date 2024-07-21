@@ -16,15 +16,15 @@ class ToDoListPage extends StatefulWidget {
 }
 
 class _ToDoListPageState extends State<ToDoListPage> {
-  final date = getDate();
+  final date = GetDate();
   int isTrue = 0;
 
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
-  String _showselectedDay = getDate().createDate(getDate().now);
+  String _showSelectedDay = GetDate().createDate(GetDate().now);
   bool checkbox = true;
-  List<ToDoListModel> ModelList = [];
-  List<ToDoListModel> TempModelList = [];
+  List<ToDoListModel> modelList = [];
+  List<ToDoListModel> tempModelList = [];
 
   bool _expanded = false;
   late FocusNode addTaskNode;
@@ -35,7 +35,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
     super.initState();
     addTaskNode = FocusNode();
 
-    ModelList = [
+    modelList = [
       /// ToDoListModel Sample
 
       // ToDoListModel(
@@ -55,7 +55,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
       // ),
     ];
 
-    ChangeModelList(false);
+    changeModelList(false);
   }
 
   @override
@@ -79,12 +79,12 @@ class _ToDoListPageState extends State<ToDoListPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TaskPageAppbar(sWidth, widget.name, context),
-                  TableCalendarWidget(),
+                  taskPageAppbar(sWidth, widget.name, context),
+                  tableCalendarWidget(),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                     child: AppText(
-                      text: _showselectedDay,
+                      text: _showSelectedDay,
                       size: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.black54,
@@ -92,9 +92,9 @@ class _ToDoListPageState extends State<ToDoListPage> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: TempModelList.length,
+                      itemCount: tempModelList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        ToDoListModel item = TempModelList[index];
+                        ToDoListModel item = tempModelList[index];
                         return FadeInDown(
                           from: 20,
                           duration: const Duration(milliseconds: 300),
@@ -157,8 +157,8 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        ModelList.remove(item);
-                                        TempModelList.remove(item);
+                                        modelList.remove(item);
+                                        tempModelList.remove(item);
                                         setState(() {});
                                       },
                                       child: SizedBox(
@@ -202,16 +202,16 @@ class _ToDoListPageState extends State<ToDoListPage> {
                             child: TextField(
                               onSubmitted: (textValue) {
                                 if (textValue.isNotEmpty) {
-                                  ModelList.add(
+                                  modelList.add(
                                     ToDoListModel(
                                       title: addTaskController.text,
                                       isChecked: false,
-                                      date: _showselectedDay,
+                                      date: _showSelectedDay,
                                     ),
                                   );
                                   addTaskController.clear();
                                   _expanded = !_expanded;
-                                  ChangeModelList(false);
+                                  changeModelList(false);
                                 }
                               },
                               focusNode: addTaskNode,
@@ -252,18 +252,18 @@ class _ToDoListPageState extends State<ToDoListPage> {
                       addTaskNode.requestFocus();
                     }
                     if (addTaskController.text.isNotEmpty) {
-                      ModelList.add(
+                      modelList.add(
                         ToDoListModel(
                           title: addTaskController.text,
                           isChecked: false,
-                          date: _showselectedDay,
+                          date: _showSelectedDay,
                         ),
                       );
                       addTaskController.clear();
                       // setState(() {
                       _expanded = !_expanded;
                       // });
-                      ChangeModelList(false);
+                      changeModelList(false);
                     } else {
                       FocusScope.of(context).unfocus();
                     }
@@ -309,22 +309,22 @@ class _ToDoListPageState extends State<ToDoListPage> {
     );
   }
 
-  void ChangeModelList(bool isCleared) {
+  void changeModelList(bool isCleared) {
     if (isCleared) {
-      TempModelList.clear();
+      tempModelList.clear();
     }
     Future.delayed(const Duration(milliseconds: 15), () {
-      for (var element in ModelList) {
-        if (element.date == _showselectedDay && !TempModelList.contains(element)) {
+      for (var element in modelList) {
+        if (element.date == _showSelectedDay && !tempModelList.contains(element)) {
           setState(() {
-            TempModelList.add(element);
+            tempModelList.add(element);
           });
         }
       }
     });
   }
 
-  Widget TableCalendarWidget() {
+  Widget tableCalendarWidget() {
     return TableCalendar(
       firstDay: DateTime(2023),
       lastDay: DateTime(2025),
@@ -344,14 +344,16 @@ class _ToDoListPageState extends State<ToDoListPage> {
         return isSameDay(_selectedDay, day);
       },
       onDaySelected: (selectedDay, focusedDay) {
-        if (!isSameDay(_selectedDay, selectedDay)) {
-          setState(() {
-            _showselectedDay = date.createDate(selectedDay);
-            _selectedDay = selectedDay;
-            _focusedDay = focusedDay;
-          });
-          ChangeModelList(true);
-        }
+        Future.delayed(const Duration(milliseconds: 15), () {
+          if (!isSameDay(_selectedDay, selectedDay)) {
+            setState(() {
+              _showSelectedDay = date.createDate(selectedDay);
+              _selectedDay = selectedDay;
+              _focusedDay = focusedDay;
+            });
+            changeModelList(true);
+          }
+        });
       },
       onPageChanged: (focusedDay) {
         _focusedDay = focusedDay;

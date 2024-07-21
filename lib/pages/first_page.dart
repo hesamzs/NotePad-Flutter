@@ -32,7 +32,7 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   bool isDrawerOpen = false;
-  final date = getDate();
+  final date = GetDate();
 
   final _key = GlobalKey();
 

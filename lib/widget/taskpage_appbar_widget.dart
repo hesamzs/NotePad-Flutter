@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notepad/widget/text_widget.dart';
+
 import '../../widget/date_widget.dart';
 
-Widget TaskPageAppbar(double sWidth, String name, var context) {
-  final date = getDate();
+Widget taskPageAppbar(double sWidth, String name, var context) {
+  final date = GetDate();
 
   return Column(
     children: [
@@ -86,13 +87,13 @@ Widget TaskPageAppbar(double sWidth, String name, var context) {
           ),
         ],
       ),
-      _MiddleAppBar(name, sWidth),
+      _middleAppBar(name, sWidth),
     ],
   );
 }
 
-Widget _MiddleAppBar(String name, double sWidth) {
-  final date = getDate();
+Widget _middleAppBar(String name, double sWidth) {
+  final date = GetDate();
 
   return sWidth < 239
       ? Column(

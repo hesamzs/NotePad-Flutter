@@ -17,7 +17,7 @@ class TaskPage extends StatefulWidget {
 }
 
 class _TaskPageState extends State<TaskPage> {
-  final date = getDate();
+  final date = GetDate();
 
   @override
   Widget build(BuildContext context) {
