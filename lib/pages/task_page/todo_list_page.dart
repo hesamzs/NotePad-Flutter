@@ -1,14 +1,16 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:notepad/database/todoListModel.dart';
 import 'package:notepad/widget/taskpage_appbar_widget.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../models/todo_list_model.dart';
 import '../../widget/date_widget.dart';
 import '../../widget/text_widget.dart';
 
 class ToDoListPage extends StatefulWidget {
   const ToDoListPage({super.key, required this.name});
+
   final String name;
 
   @override
@@ -23,12 +25,14 @@ class _ToDoListPageState extends State<ToDoListPage> {
   DateTime? _selectedDay;
   String _showSelectedDay = GetDate().createDate(GetDate().now);
   bool checkbox = true;
-  List<ToDoListModel> modelList = [];
-  List<ToDoListModel> tempModelList = [];
+  List<TodoListModelHive> modelList = [];
+  List<TodoListModelHive> tempModelList = [];
 
   bool _expanded = false;
   late FocusNode addTaskNode;
   TextEditingController addTaskController = TextEditingController();
+
+  late Box<TodoListModelHive> todoBox;
 
   @override
   void initState() {
@@ -36,25 +40,29 @@ class _ToDoListPageState extends State<ToDoListPage> {
     addTaskNode = FocusNode();
 
     modelList = [
-      /// ToDoListModel Sample
+      /// TodoListModelHive Sample
 
-      // ToDoListModel(
+      // TodoListModelHive(
       //   title: "NotePad Project",
       //   isChecked: true,
       //   date: getDate().createDate(DateTime.now()),
       // ),
-      // ToDoListModel(
+      // TodoListModelHive(
       //   title: "Flutter",
       //   isChecked: false,
       //   date: getDate().createDate(DateTime.now()),
       // ),
-      // ToDoListModel(
+      // TodoListModelHive(
       //   title: "Dart",
       //   isChecked: true,
       //   date: getDate().createDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 2)),
       // ),
     ];
 
+    todoBox = Hive.box<TodoListModelHive>('todoList');
+    for (int i = 0; i < todoBox.length; i++) {
+      modelList.add(todoBox.getAt(i)!);
+    }
     changeModelList(false);
   }
 
@@ -94,7 +102,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                     child: ListView.builder(
                       itemCount: tempModelList.length,
                       itemBuilder: (BuildContext context, int index) {
-                        ToDoListModel item = tempModelList[index];
+                        TodoListModelHive item = tempModelList[index];
                         return FadeInDown(
                           from: 20,
                           duration: const Duration(milliseconds: 300),
@@ -140,8 +148,10 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                             setState(
                                               () {
                                                 item.isChecked = value!;
+
                                               },
                                             );
+                                            todoBox.putAt(modelList.indexOf(item), item);
                                           },
                                         ),
                                       ),
@@ -157,6 +167,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
+                                        todoBox.deleteAt(modelList.indexOf(item));
                                         modelList.remove(item);
                                         tempModelList.remove(item);
                                         setState(() {});
@@ -203,7 +214,14 @@ class _ToDoListPageState extends State<ToDoListPage> {
                               onSubmitted: (textValue) {
                                 if (textValue.isNotEmpty) {
                                   modelList.add(
-                                    ToDoListModel(
+                                    TodoListModelHive(
+                                      title: addTaskController.text,
+                                      isChecked: false,
+                                      date: _showSelectedDay,
+                                    ),
+                                  );
+                                  todoBox.add(
+                                    TodoListModelHive(
                                       title: addTaskController.text,
                                       isChecked: false,
                                       date: _showSelectedDay,
@@ -253,7 +271,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                     }
                     if (addTaskController.text.isNotEmpty) {
                       modelList.add(
-                        ToDoListModel(
+                        TodoListModelHive(
                           title: addTaskController.text,
                           isChecked: false,
                           date: _showSelectedDay,
