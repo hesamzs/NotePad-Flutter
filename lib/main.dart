@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notepad/database/todoListModel.dart';
 import 'package:notepad/pages/task_page/todo_list_page.dart';
+import 'package:notepad/pages/welcome_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NotePad',
-      // home: FirstImage(),
+      home: FirstImage(),
       // home: FirstPage(),
-      home: const ToDoListPage(name: ":Dsa"),
+      // home: const ToDoListPage(name: ":Dsa"),
       theme: ThemeData(brightness: Brightness.light),
       debugShowCheckedModeBanner: false,
     );

@@ -69,6 +69,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
   @override
   Widget build(BuildContext context) {
     var sWidth = MediaQuery.of(context).size.width;
+    print(todoBox.length);
 
     return SafeArea(
       child: GestureDetector(
@@ -213,6 +214,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                             child: TextField(
                               onSubmitted: (textValue) {
                                 if (textValue.isNotEmpty) {
+
                                   modelList.add(
                                     TodoListModelHive(
                                       title: addTaskController.text,
@@ -227,6 +229,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                       date: _showSelectedDay,
                                     ),
                                   );
+                                  print(todoBox.length);
                                   addTaskController.clear();
                                   _expanded = !_expanded;
                                   changeModelList(false);
