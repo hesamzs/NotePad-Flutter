@@ -3,7 +3,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:notepad/widget/text_widget.dart';
 
 class SoundsPanel extends StatefulWidget {
-  const SoundsPanel({Key? key}) : super(key: key);
+  const SoundsPanel({super.key});
 
   @override
   State<SoundsPanel> createState() => _SoundsPanelState();
@@ -46,7 +46,6 @@ class _SoundsPanelState extends State<SoundsPanel> {
                         fontWeight: FontWeight.bold),
                   ],
                 ),
-
               ),
             ),
             Padding(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notepad/widget/text_widget.dart';
 
 class VibratePanel extends StatefulWidget {
-  const VibratePanel({Key? key}) : super(key: key);
+  const VibratePanel({super.key});
 
   @override
   State<VibratePanel> createState() => _VibratePanelState();
@@ -10,7 +10,7 @@ class VibratePanel extends StatefulWidget {
 
 class _VibratePanelState extends State<VibratePanel> {
 
-  List vibrate_option = [
+  List vibrateOption = [
     ["Default",true],
     ["Short",false],
     ["Long",false],
@@ -24,7 +24,7 @@ class _VibratePanelState extends State<VibratePanel> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          for(var current in vibrate_option)
+          for(var current in vibrateOption)
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,7 +38,7 @@ class _VibratePanelState extends State<VibratePanel> {
                     child: GestureDetector(
                       onTap: (){
                         setState(() {
-                          for(var x in vibrate_option){
+                          for(var x in vibrateOption){
                             x[1] = false;
                           }
                           current[1] = true;

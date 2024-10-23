@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:notepad/models/task_notif_model.dart';
@@ -8,9 +7,9 @@ import 'package:notepad/widget/text_widget.dart';
 import '../../models/task_type_model.dart';
 
 class TaskPage extends StatefulWidget {
-  const TaskPage({Key? key, required this.name}) : super(key: key);
+  const TaskPage({super.key, required this.name});
 
-  final name;
+  final String name;
 
   @override
   State<TaskPage> createState() => _TaskPageState();
@@ -29,14 +28,14 @@ class _TaskPageState extends State<TaskPage> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              AppBar(sWidth, widget.name),
+              appBar(sWidth, widget.name),
               Container(
                 width: sWidth * 0.9,
                 height: 130,
                 color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: _CreateNotifBox(),
+                  children: _createNotificationBox(),
                 ),
               ),
               Container(
@@ -45,7 +44,7 @@ class _TaskPageState extends State<TaskPage> {
                 color: Colors.transparent,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: _TasksType(),
+                  children: _tasksType(),
                 ),
               ),
               Padding(
@@ -76,7 +75,7 @@ class _TaskPageState extends State<TaskPage> {
     );
   }
 
-  Widget AppBar(double sWidth, String name) {
+  Widget appBar(double sWidth, String name) {
     return Column(
       children: [
         Row(
@@ -166,7 +165,7 @@ class _TaskPageState extends State<TaskPage> {
                     padding: const EdgeInsets.all(10),
                     child: SvgPicture.asset(
                       "assets/images/chart.svg",
-                      color: const Color(0xffF1F5FD),
+                      colorFilter: ColorFilter.mode(Color(0xffF1F5FD), BlendMode.srcIn),
                     ),
                   ),
                 ),
@@ -177,12 +176,12 @@ class _TaskPageState extends State<TaskPage> {
         SizedBox(
           height: sWidth > 239 ? 20 : 0,
         ),
-        _MiddleAppBar(widget.name),
+        _middleAppBar(widget.name),
       ],
     );
   }
 
-  List<Widget> _TasksType() {
+  List<Widget> _tasksType() {
     return List.generate(
       4,
       (index) {
@@ -251,7 +250,10 @@ class _TaskPageState extends State<TaskPage> {
                         padding: const EdgeInsets.all(15.0),
                         child: SvgPicture.asset(
                           "assets/images/arrow-right.svg",
-                          color: const Color(0xffF1F5FD),
+                          colorFilter: ColorFilter.mode(
+                            Color(0xffF1F5FD),
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ),
@@ -265,10 +267,10 @@ class _TaskPageState extends State<TaskPage> {
     );
   }
 
-  List<Widget> _CreateNotifBox() {
+  List<Widget> _createNotificationBox() {
     var sWidth = MediaQuery.of(context).size.width;
     return List.generate(3, (index) {
-      TaskNofifModel current = tasknotifModel[index];
+      TaskNotificationModel current = taskNotificationModel[index];
       return Padding(
         padding: const EdgeInsets.all(4.0),
         child: Container(
@@ -330,7 +332,7 @@ class _TaskPageState extends State<TaskPage> {
     });
   }
 
-  Widget _MiddleAppBar(String name) {
+  Widget _middleAppBar(String name) {
     var sWidth = MediaQuery.of(context).size.width;
     return sWidth < 239
         ? Column(

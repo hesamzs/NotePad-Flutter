@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../widget/text_widget.dart';
 
 class ThemePanel extends StatefulWidget {
-  const ThemePanel({Key? key}) : super(key: key);
+  const ThemePanel({super.key});
 
   @override
   State<ThemePanel> createState() => _ThemePanelState();
@@ -11,7 +11,7 @@ class ThemePanel extends StatefulWidget {
 
 class _ThemePanelState extends State<ThemePanel> {
 
-  List theme_option = [
+  List themeOption = [
     ["Light",true],
     ["Dark",false],
   ];
@@ -23,7 +23,7 @@ class _ThemePanelState extends State<ThemePanel> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          for(var current in theme_option)
+          for(var current in themeOption)
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,7 +37,7 @@ class _ThemePanelState extends State<ThemePanel> {
                     child: GestureDetector(
                       onTap: (){
                         setState(() {
-                          for(var x in theme_option){
+                          for(var x in themeOption){
                             x[1] = false;
                           }
                           current[1] = true;

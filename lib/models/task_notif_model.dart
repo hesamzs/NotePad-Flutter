@@ -1,15 +1,13 @@
-import 'dart:math' as math;
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TaskNofifModel {
+class TaskNotificationModel {
   final String title;
   final String number;
   final IconData logo;
 
 
-  TaskNofifModel({
+  TaskNotificationModel({
     required this.title,
     required this.number,
     required this.logo,
@@ -17,18 +15,18 @@ class TaskNofifModel {
   });
 }
 
-List<TaskNofifModel> tasknotifModel = [
-  TaskNofifModel(
+List<TaskNotificationModel> taskNotificationModel = [
+  TaskNotificationModel(
       title: "Done",
       number: "15",
       logo: Icons.done,
   ),
-  TaskNofifModel(
+  TaskNotificationModel(
       title: "Pending",
       number: "2",
       logo: Icons.pending_actions_sharp
   ),
-  TaskNofifModel(
+  TaskNotificationModel(
       title: "OnGoing",
       number: "0",
       logo: Icons.cancel_outlined

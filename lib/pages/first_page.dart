@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:notepad/models/category_model.dart';
 import 'package:notepad/models/recent_model.dart';
 import 'package:notepad/pages/task_page/task_page.dart';
@@ -13,18 +12,16 @@ import '../widget/date_widget.dart';
 import 'drawer_page.dart';
 
 class FirstPageRoute extends CupertinoPageRoute {
-  FirstPageRoute()
-      : super(builder: (BuildContext context) => const FirstPage());
+  FirstPageRoute() : super(builder: (BuildContext context) => const FirstPage());
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
     return FadeTransition(opacity: animation, child: const FirstPage());
   }
 }
 
 class FirstPage extends StatefulWidget {
-  const FirstPage({Key? key}) : super(key: key);
+  const FirstPage({super.key});
 
   @override
   State<FirstPage> createState() => _FirstPageState();
@@ -70,22 +67,13 @@ class _FirstPageState extends State<FirstPage> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              AppText(
-                                  text: date.getDayNum(),
-                                  size: 36,
-                                  color: const Color(0xff2A135A),
-                                  fontWeight: FontWeight.bold),
+                              AppText(text: date.getDayNum(), size: 36, color: const Color(0xff2A135A), fontWeight: FontWeight.bold),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 16.0, horizontal: 6),
+                                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 6),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    AppText(
-                                        text: date.getMonth(),
-                                        size: 16,
-                                        color: const Color(0xff2A135A),
-                                        fontWeight: FontWeight.bold),
+                                    AppText(text: date.getMonth(), size: 16, color: const Color(0xff2A135A), fontWeight: FontWeight.bold),
                                     AppText(
                                       text: date.getDay(),
                                       size: 12,
@@ -104,8 +92,7 @@ class _FirstPageState extends State<FirstPage> {
                                         })
                                       : setState(() {
                                           isDrawerOpen = true;
-                                          Scrollable.ensureVisible(
-                                              _key.currentContext!);
+                                          Scrollable.ensureVisible(_key.currentContext!);
                                         });
                                 },
                                 child: SizedBox(
@@ -132,9 +119,7 @@ class _FirstPageState extends State<FirstPage> {
                               width: 25,
                               decoration: const BoxDecoration(
                                 color: Color(0xff2A135A),
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(5),
-                                    bottomRight: Radius.circular(5)),
+                                borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Color(0xff2A135A),
@@ -153,11 +138,7 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                           FadeInLeft(
                             delay: const Duration(milliseconds: 600),
-                            child: const AppText(
-                                text: "Categories",
-                                size: 20,
-                                color: Color(0xff2A135A),
-                                fontWeight: FontWeight.bold),
+                            child: const AppText(text: "Categories", size: 20, color: Color(0xff2A135A), fontWeight: FontWeight.bold),
                           ),
                           Expanded(child: Container()),
                           FadeInRight(
@@ -173,23 +154,20 @@ class _FirstPageState extends State<FirstPage> {
                       ),
                       // Category Boxes
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
                         child: AnimationLimiter(
                           child: GridView.builder(
                             physics: const ScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: categoryComponents.length,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: sWidth > 270 ? 2 : 1,
                               mainAxisSpacing: 10,
                               crossAxisSpacing: 10,
                               mainAxisExtent: 135,
                             ),
                             itemBuilder: (_, int index) {
-                              CategoryModel categoryModel =
-                                  categoryComponents[index];
+                              CategoryModel categoryModel = categoryComponents[index];
                               return AnimationConfiguration.staggeredGrid(
                                 columnCount: 4,
                                 position: index,
@@ -202,16 +180,13 @@ class _FirstPageState extends State<FirstPage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => TaskPage(
-                                                name: categoryModel.title
-                                                    .toString()),
+                                            builder: (context) => TaskPage(name: categoryModel.title.toString()),
                                           ),
                                         );
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
+                                          borderRadius: BorderRadius.circular(5),
                                           color: Color(categoryModel.color),
                                           boxShadow: [
                                             BoxShadow(
@@ -229,81 +204,44 @@ class _FirstPageState extends State<FirstPage> {
                                             Column(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
+                                                  padding: const EdgeInsets.all(10.0),
                                                   child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          color: Color(
-                                                              categoryModel
-                                                                  .darkcolor),
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(5),
+                                                          color: Color(categoryModel.darkColor),
                                                           boxShadow: [
                                                             BoxShadow(
-                                                              color: Color(
-                                                                  categoryModel
-                                                                      .darkcolor),
+                                                              color: Color(categoryModel.darkColor),
                                                               blurRadius: 4.0,
-                                                              offset:
-                                                                  const Offset(
+                                                              offset: const Offset(
                                                                 1,
                                                                 2,
                                                               ),
                                                             )
                                                           ],
                                                         ),
-                                                        width: sWidth > 270
-                                                            ? sWidth * 0.18
-                                                            : 60,
+                                                        width: sWidth > 270 ? sWidth * 0.18 : 60,
                                                         height: 60,
                                                         child: Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      sWidth *
-                                                                          0.02,
-                                                                  vertical: 8),
-                                                          child:
-                                                              SvgPicture.asset(
-                                                            categoryModel
-                                                                .imageUrl,
-                                                            color: Color(
-                                                                categoryModel
-                                                                    .logocolor),
-                                                          ),
+                                                          padding: EdgeInsets.symmetric(horizontal: sWidth * 0.02, vertical: 8),
+                                                          child: SvgPicture.asset(categoryModel.imageUrl, colorFilter: ColorFilter.mode(Color(categoryModel.logoColor), BlendMode.srcIn)),
                                                         ),
                                                       ),
                                                       Column(
                                                         children: [
                                                           Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            16),
-                                                                color: Color(
-                                                                    categoryModel
-                                                                        .darkcolor),
+                                                              decoration: BoxDecoration(
+                                                                borderRadius: BorderRadius.circular(16),
+                                                                color: Color(categoryModel.darkColor),
                                                                 boxShadow: [
                                                                   BoxShadow(
-                                                                    color: Color(
-                                                                        categoryModel
-                                                                            .darkcolor),
-                                                                    blurRadius:
-                                                                        6.0,
-                                                                    offset:
-                                                                        const Offset(
+                                                                    color: Color(categoryModel.darkColor),
+                                                                    blurRadius: 6.0,
+                                                                    offset: const Offset(
                                                                       0,
                                                                       3,
                                                                     ),
@@ -313,46 +251,32 @@ class _FirstPageState extends State<FirstPage> {
                                                               width: 30,
                                                               height: 30,
                                                               child: Padding(
-                                                                padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        7.0),
+                                                                padding: const EdgeInsets.symmetric(vertical: 7.0),
                                                                 child: Column(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                   children: [
                                                                     Container(
                                                                       width: 4,
                                                                       height: 4,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(15),
-                                                                        color: Color(
-                                                                            categoryModel.logocolor),
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(15),
+                                                                        color: Color(categoryModel.logoColor),
                                                                       ),
                                                                     ),
                                                                     Container(
                                                                       width: 4,
                                                                       height: 4,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(15),
-                                                                        color: Color(
-                                                                            categoryModel.logocolor),
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(15),
+                                                                        color: Color(categoryModel.logoColor),
                                                                       ),
                                                                     ),
                                                                     Container(
                                                                       width: 4,
                                                                       height: 4,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(15),
-                                                                        color: Color(
-                                                                            categoryModel.logocolor),
+                                                                      decoration: BoxDecoration(
+                                                                        borderRadius: BorderRadius.circular(15),
+                                                                        color: Color(categoryModel.logoColor),
                                                                       ),
                                                                     ),
                                                                   ],
@@ -365,47 +289,23 @@ class _FirstPageState extends State<FirstPage> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsets.only(
-                                                    left: sWidth > 270
-                                                        ? sWidth * 0.03
-                                                        : sWidth * 0.05,
+                                                    left: sWidth > 270 ? sWidth * 0.03 : sWidth * 0.05,
                                                   ),
                                                   child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
                                                       Column(
                                                         children: [
                                                           SizedBox(
                                                             width: 80,
                                                             height: 25,
-                                                            child: AppText(
-                                                                text:
-                                                                    categoryModel
-                                                                        .title,
-                                                                size: 22,
-                                                                color: Color(
-                                                                    categoryModel
-                                                                        .logocolor),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
+                                                            child: AppText(text: categoryModel.title, size: 22, color: Color(categoryModel.logoColor), fontWeight: FontWeight.bold),
                                                           ),
                                                           SizedBox(
                                                             width: 80,
                                                             height: 25,
-                                                            child: AppText(
-                                                                text: categoryModel
-                                                                    .description,
-                                                                size: 4,
-                                                                color: Color(
-                                                                    categoryModel
-                                                                        .logocolor),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
+                                                            child: AppText(text: categoryModel.description, size: 4, color: Color(categoryModel.logoColor), fontWeight: FontWeight.bold),
                                                           )
                                                         ],
                                                       ),
@@ -415,21 +315,15 @@ class _FirstPageState extends State<FirstPage> {
                                               ],
                                             ),
                                             Positioned(
-                                              right: sWidth > 270
-                                                  ? sWidth * -0.05
-                                                  : sWidth * -0.02,
+                                              right: sWidth > 270 ? sWidth * -0.05 : sWidth * -0.02,
                                               top: 70,
                                               child: Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        15, 0, 15.0, 15),
+                                                padding: const EdgeInsets.fromLTRB(15, 0, 15.0, 15),
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                     boxShadow: [
                                                       BoxShadow(
-                                                        color: Color(
-                                                            categoryModel
-                                                                .darkcolor),
+                                                        color: Color(categoryModel.darkColor),
                                                         blurRadius: 40.0,
                                                         offset: const Offset(
                                                           0,
@@ -442,20 +336,10 @@ class _FirstPageState extends State<FirstPage> {
                                                   height: 55,
                                                   child: Transform(
                                                     alignment: Alignment.center,
-                                                    transform:
-                                                        Matrix4.rotationY(
-                                                            categoryModel
-                                                                .rotate),
+                                                    transform: Matrix4.rotationY(categoryModel.rotate),
                                                     child: Transform(
-                                                      transform:
-                                                          Matrix4.rotationZ(
-                                                              -0.29),
-                                                      child: SvgPicture.asset(
-                                                        categoryModel.imageUrl,
-                                                        color: Color(
-                                                            categoryModel
-                                                                .lightcolor),
-                                                      ),
+                                                      transform: Matrix4.rotationZ(-0.29),
+                                                      child: SvgPicture.asset(categoryModel.imageUrl, colorFilter: ColorFilter.mode(Color(categoryModel.lightColor), BlendMode.srcIn)),
                                                     ),
                                                   ),
                                                 ),
@@ -485,9 +369,7 @@ class _FirstPageState extends State<FirstPage> {
                               width: 25,
                               decoration: const BoxDecoration(
                                 color: Color(0xff2A135A),
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(5),
-                                    bottomRight: Radius.circular(5)),
+                                borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Color(0xff2A135A),
@@ -506,11 +388,7 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                           FadeInLeft(
                             delay: const Duration(milliseconds: 1100),
-                            child: const AppText(
-                                text: "Recent",
-                                size: 20,
-                                color: Color(0xff2A135A),
-                                fontWeight: FontWeight.bold),
+                            child: const AppText(text: "Recent", size: 20, color: Color(0xff2A135A), fontWeight: FontWeight.bold),
                           ),
                           Expanded(child: Container()),
                           FadeInRight(
@@ -528,8 +406,7 @@ class _FirstPageState extends State<FirstPage> {
                       FadeInUp(
                         delay: const Duration(milliseconds: 1300),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             width: sWidth,
@@ -539,8 +416,7 @@ class _FirstPageState extends State<FirstPage> {
                               color: const Color(0xffE0E8F9),
                               boxShadow: [
                                 BoxShadow(
-                                  color:
-                                      const Color(0xff000000).withOpacity(0.27),
+                                  color: const Color(0xff000000).withOpacity(0.27),
                                   blurRadius: 17.0,
                                   offset: const Offset(
                                     0,
@@ -554,34 +430,27 @@ class _FirstPageState extends State<FirstPage> {
                                 physics: const BouncingScrollPhysics(),
                                 itemCount: recentcomponent.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  recentcomponent
-                                      .sort((a, b) => a.time.compareTo(b.time));
+                                  recentcomponent.sort((a, b) => a.time.compareTo(b.time));
                                   RecentModel current = recentcomponent[index];
-                                  CategoryModel catcurrent =
-                                      categoryComponents[current.groupid];
+                                  CategoryModel catcurrent = categoryComponents[current.groupid];
 
                                   return AnimationConfiguration.staggeredList(
                                     position: index,
-                                    duration:
-                                        const Duration(milliseconds: 2000),
+                                    duration: const Duration(milliseconds: 2000),
                                     child: SlideAnimation(
                                       verticalOffset: 200.0,
                                       child: FadeInAnimation(
                                         child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8.0, vertical: 4),
+                                          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                                           child: Container(
                                             width: sWidth,
                                             height: 50,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
+                                              borderRadius: BorderRadius.circular(5),
                                               color: Color(catcurrent.color),
                                               boxShadow: [
                                                 BoxShadow(
-                                                  color: Color(
-                                                          catcurrent.lightcolor)
-                                                      .withOpacity(0.27),
+                                                  color: Color(catcurrent.lightColor).withOpacity(0.27),
                                                   blurRadius: 17.0,
                                                   offset: const Offset(
                                                     0,
@@ -591,89 +460,51 @@ class _FirstPageState extends State<FirstPage> {
                                               ],
                                             ),
                                             child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Expanded(
                                                   child: Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 8.0),
+                                                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                                     child: Container(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 4,
-                                                          vertical: 4),
+                                                      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                                                       child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
                                                           const SizedBox(
                                                             height: 4,
                                                           ),
-                                                          Text(
-                                                            current.title,
-                                                            style: GoogleFonts
-                                                                .ubuntu(
-                                                              fontSize: 14,
-                                                              color: Color(
-                                                                catcurrent
-                                                                    .logocolor,
-                                                              ),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                          AppText(
+                                                            text: current.title,
+                                                            size: 6,
+                                                            color: Color(
+                                                              catcurrent.logoColor,
                                                             ),
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
+                                                            fontWeight: FontWeight.bold,
+                                                            overflow: TextOverflow.ellipsis,
                                                           ),
                                                           const SizedBox(
                                                             height: 2,
                                                           ),
-                                                          AppText(
-                                                              text:
-                                                                  "${current.time} min ago",
-                                                              size: 6,
-                                                              color: Color(
-                                                                  catcurrent
-                                                                      .logocolor),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)
+                                                          AppText(text: "${current.time} min ago", size: 6, color: Color(catcurrent.logoColor), fontWeight: FontWeight.bold)
                                                         ],
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 14.0),
+                                                  padding: const EdgeInsets.only(top: 14.0),
                                                   child: Container(
                                                     alignment: Alignment.center,
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            1.5),
+                                                    padding: const EdgeInsets.all(1.5),
                                                     width: sWidth * 0.15,
                                                     child: Transform(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      transform:
-                                                          Matrix4.rotationY(
-                                                              catcurrent
-                                                                  .rotate),
+                                                      alignment: Alignment.center,
+                                                      transform: Matrix4.rotationY(catcurrent.rotate),
                                                       child: Transform(
-                                                        transform:
-                                                            Matrix4.rotationZ(
-                                                                -0.29),
+                                                        transform: Matrix4.rotationZ(-0.29),
                                                         child: SvgPicture.asset(
                                                           catcurrent.imageUrl,
-                                                          color: Color(
-                                                              catcurrent
-                                                                  .lightcolor),
+                                                          colorFilter: ColorFilter.mode(Color(catcurrent.lightColor), BlendMode.srcIn),
                                                           height: 50,
                                                           width: 50,
                                                         ),
@@ -682,16 +513,12 @@ class _FirstPageState extends State<FirstPage> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 4.0),
+                                                  padding: const EdgeInsets.only(right: 4.0),
                                                   child: SizedBox(
                                                     width: sWidth * 0.07,
                                                     child: Icon(
-                                                      Icons
-                                                          .arrow_forward_ios_sharp,
-                                                      color: Color(
-                                                          catcurrent.logocolor),
+                                                      Icons.arrow_forward_ios_sharp,
+                                                      color: Color(catcurrent.logoColor),
                                                     ),
                                                   ),
                                                 ),

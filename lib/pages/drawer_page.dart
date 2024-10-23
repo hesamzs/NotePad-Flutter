@@ -6,7 +6,7 @@ class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
 
   @override
-  _DrawerScreenState createState() => _DrawerScreenState();
+  State<DrawerScreen> createState() => _DrawerScreenState();
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
@@ -24,8 +24,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
           Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  bottomLeft: Radius.circular(50)),
+                topLeft: Radius.circular(50),
+                bottomLeft: Radius.circular(50),
+              ),
               color: Color(0xffF1F5FD),
             ),
             width: sWidth / 1.2,
@@ -43,9 +44,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             width: 25,
                             decoration: const BoxDecoration(
                               color: Color(0xff2A135A),
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(5),
-                                  bottomRight: Radius.circular(5)),
+                              borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
                               boxShadow: [
                                 BoxShadow(
                                   color: Color(0xff2A135A),
@@ -61,11 +60,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           const SizedBox(
                             width: 10,
                           ),
-                          const AppText(
-                              text: "Settings",
-                              size: 20,
-                              color: Color(0xff2A135A),
-                              fontWeight: FontWeight.bold),
+                          const AppText(text: "Settings", size: 20, color: Color(0xff2A135A), fontWeight: FontWeight.bold),
                         ],
                       ),
                       Container(
@@ -87,11 +82,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     ],
                   )
                 : const Center(
-                    child: AppText(
-                        text: "your screen size is too small ",
-                        size: 14,
-                        color: Color(0xff2A135A),
-                        fontWeight: FontWeight.w600),
+                    child: AppText(text: "your screen size is too small ", size: 14, color: Color(0xff2A135A), fontWeight: FontWeight.w600),
                   ),
           )
         ],
@@ -99,4 +90,3 @@ class _DrawerScreenState extends State<DrawerScreen> {
     );
   }
 }
-

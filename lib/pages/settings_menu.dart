@@ -9,7 +9,7 @@ import 'settings_panel/theme_panel.dart';
 import 'settings_panel/vibrate_panel.dart';
 
 class SettingMenu extends StatefulWidget {
-  SettingMenu({Key? key}) : super(key: key);
+  const SettingMenu({super.key});
 
   @override
   State<SettingMenu> createState() => _SettingMenuState();
@@ -51,7 +51,7 @@ class _SettingMenuState extends State<SettingMenu> {
                 if (clicked == false) {
                   clicked = true;
                   if (current[2] == false) {
-                    Future.delayed(const Duration(milliseconds: 180), () {
+                    Future.delayed(const Duration(milliseconds: 220), () {
                       setState(() {
                         current[7] = !current[7];
                       });
@@ -120,30 +120,29 @@ class _SettingMenuState extends State<SettingMenu> {
                           ),
                         ),
                         Padding(
-                            padding: const EdgeInsets.fromLTRB(5, 10, 15, 10),
-                            child: Container(
-                                width: 18,
-                                height: 18,
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: const Color(0xffF1F5FD).withOpacity(.1),
-                                      blurRadius: 6.0,
-                                      offset: const Offset(
-                                        0,
-                                        3,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                child: AnimatedRotation(
-                                  turns: checkDouble(current[3].toString()),
-                                  duration: const Duration(milliseconds: 350),
-                                  child: SvgPicture.asset(
-                                    "assets/images/arrow-down.svg",
-                                    color: const Color(0xffF1F5FD),
+                          padding: const EdgeInsets.fromLTRB(5, 10, 15, 10),
+                          child: Container(
+                            width: 18,
+                            height: 18,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xffF1F5FD).withOpacity(.1),
+                                  blurRadius: 6.0,
+                                  offset: const Offset(
+                                    0,
+                                    3,
                                   ),
-                                )))
+                                ),
+                              ],
+                            ),
+                            child: AnimatedRotation(
+                              turns: checkDouble(current[3].toString()),
+                              duration: const Duration(milliseconds: 350),
+                              child: SvgPicture.asset("assets/images/arrow-down.svg", colorFilter: ColorFilter.mode(Color(0xffF1F5FD), BlendMode.srcIn)),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                     current[7]

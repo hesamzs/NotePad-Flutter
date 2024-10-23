@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:notepad/widget/taskpage_appbar_widget.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../models/todo_list_mdoel.dart';
+import '../../models/todo_list_model.dart';
 import '../../widget/date_widget.dart';
 import '../../widget/text_widget.dart';
 
 class ToDoListPage extends StatefulWidget {
-  const ToDoListPage({Key? key, required this.name}) : super(key: key);
-  final name;
+  const ToDoListPage({super.key, required this.name});
+  final String name;
 
   @override
   State<ToDoListPage> createState() => _ToDoListPageState();
@@ -128,7 +128,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                         child: Checkbox(
                                           value: item.isChecked,
                                           checkColor: Colors.greenAccent,
-                                          fillColor: MaterialStatePropertyAll<Color?>(
+                                          fillColor: WidgetStatePropertyAll<Color?>(
                                             const Color(0xff2A135A).withOpacity(.5),
                                           ),
                                           side: BorderSide(

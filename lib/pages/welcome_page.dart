@@ -8,7 +8,7 @@ import '../models/welcome_model.dart';
 import '../widget/text_widget.dart';
 
 class FirstImage extends StatefulWidget {
-  const FirstImage({Key? key}) : super(key: key);
+  const FirstImage({super.key});
 
   @override
   State<FirstImage> createState() => _FirstImageState();
@@ -43,7 +43,7 @@ class _FirstImageState extends State<FirstImage> {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();

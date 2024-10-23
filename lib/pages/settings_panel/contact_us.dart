@@ -3,9 +3,14 @@ import 'package:flutter/services.dart';
 
 import '../../widget/text_widget.dart';
 
-class ContactUs extends StatelessWidget {
-  ContactUs({Key? key}) : super(key: key);
+class ContactUs extends StatefulWidget {
+  const ContactUs({super.key});
 
+  @override
+  State<ContactUs> createState() => _ContactUsState();
+}
+
+class _ContactUsState extends State<ContactUs> {
   List contactUs = [
     ["Telegram", "t.me/hesamzs"],
     ["Instagram", "instagram.com/hesamzs"],
@@ -59,7 +64,7 @@ class ContactUs extends StatelessWidget {
 }
 
 class FooterPage extends StatelessWidget {
-  const FooterPage({Key? key}) : super(key: key);
+  const FooterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +79,7 @@ class FooterPage extends StatelessWidget {
             text: sWidth > 240 ? "Made with \u2764 by hesamzs" : "Made by hesamzs",
             size: sWidth > 270 ? 14 : 8,
             color: const Color(0xffF1F5FD).withOpacity(0.8),
-            fontWeight: FontWeight.bold),
+            fontWeight: FontWeight.bold,),
         const SizedBox(
           height: 5,
         ),
@@ -82,10 +87,8 @@ class FooterPage extends StatelessWidget {
             text: "v0.10",
             size:  sWidth > 270 ? 12 : 8,
             color: const Color(0xffF1F5FD).withOpacity(0.8),
-            fontWeight: FontWeight.bold),
-        const SizedBox(
-          height: 15,
-        )
+            fontWeight: FontWeight.bold,),
+
       ],
     );
   }
