@@ -13,6 +13,11 @@ Here're some of the project's best features:
 *   ⚒ Stopwatch
 *   ⚒ Notes
 
+dependencies used:
+
+*   ✔ hive
+*   ✔ animate_do
+
 <h2>🛠️ Installation Steps:</h2>
 
 <p>1. Clone Repo ⬇</p>
@@ -24,7 +29,8 @@ clone https://github.com/hesamzs/NotePad-Flutter.git
 <p>2. run in Flutter</p>
 
 ```
-Flutter run
+flutter pub get
+flutter run
 ```
 
 <h2>🛡️ License:</h2>
