@@ -3,7 +3,7 @@ import 'package:notepad/widget/text_widget.dart';
 
 import '../../widget/date_widget.dart';
 
-Widget taskPageAppbar(double sWidth, String name, var context) {
+Widget taskPageAppbar(double sWidth, String name, var context,modelList) {
   final date = GetDate();
 
   return Column(
@@ -11,7 +11,7 @@ Widget taskPageAppbar(double sWidth, String name, var context) {
       Row(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => Navigator.pop(context,[name,modelList]),
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Container(

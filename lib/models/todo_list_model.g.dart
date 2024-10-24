@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'todoListModel.dart';
+part of 'todo_list_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TodoListModelHiveAdapter extends TypeAdapter<TodoListModelHive> {
+class ToDoListModelAdapter extends TypeAdapter<ToDoListModel> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
-  TodoListModelHive read(BinaryReader reader) {
+  ToDoListModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TodoListModelHive(
+    return ToDoListModel(
       title: fields[0] as String,
       isChecked: fields[1] as bool,
       date: fields[2] as String,
@@ -24,7 +24,7 @@ class TodoListModelHiveAdapter extends TypeAdapter<TodoListModelHive> {
   }
 
   @override
-  void write(BinaryWriter writer, TodoListModelHive obj) {
+  void write(BinaryWriter writer, ToDoListModel obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -41,7 +41,7 @@ class TodoListModelHiveAdapter extends TypeAdapter<TodoListModelHive> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TodoListModelHiveAdapter &&
+      other is ToDoListModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hive/hive.dart';
+import 'package:hive/hive.dart';
+import 'package:notepad/database/category_db/categoriesDB.dart';
 import 'package:notepad/models/task_notif_model.dart';
 import 'package:notepad/widget/date_widget.dart';
 import 'package:notepad/widget/text_widget.dart';
@@ -18,9 +21,43 @@ class TaskPage extends StatefulWidget {
 class _TaskPageState extends State<TaskPage> {
   final date = GetDate();
 
+  late Box<CategoryDB> categoryDB;
+  bool createdDB = false;
+  int dbIndex = 2;
+
+  @override
+  void initState() {
+    super.initState();
+
+    categoryDB = Hive.box<CategoryDB>("categoryDB");
+    if (categoryDB.length == 0) {
+      categoryDB.add(
+        CategoryDB(categoryTitle: {widget.name: {}}),
+      );
+      dbIndex = 0;
+      print("DB INDEX 0");
+    }
+    for (var e in categoryDB.keys) {
+      if (categoryDB.getAt(e)!.categoryTitle.keys.contains(widget.name)) {
+        createdDB = true;
+        dbIndex = e;
+        break;
+      }
+    }
+    if (createdDB == false) {
+      categoryDB.add(
+        CategoryDB(categoryTitle: {widget.name: {}}),
+      );
+      dbIndex = categoryDB.length - 1;
+
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     var sWidth = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xffF1F5FD),
@@ -186,12 +223,23 @@ class _TaskPageState extends State<TaskPage> {
       4,
       (index) {
         TaskTypeModel current = taskTypeModel[index];
+
         return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => current.className),
-            );
+              MaterialPageRoute(
+                builder: (context) => current.className,
+                settings: RouteSettings(arguments: categoryDB.getAt(dbIndex)!.categoryTitle[widget.name][current.title] ?? []),
+              ),
+            ).then((value) {
+              categoryDB.putAt(
+                dbIndex,
+                CategoryDB(categoryTitle: {
+                  widget.name: {value[0]: value[1]}
+                }),
+              );
+            });
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),

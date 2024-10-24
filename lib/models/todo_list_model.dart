@@ -1,20 +1,16 @@
-
 import 'package:hive/hive.dart';
 
-part 'todoListModel.g.dart';
-
-@HiveType(typeId: 1)
-class TodoListModelHive {
+part 'todo_list_model.g.dart';
+@HiveType(typeId: 2)
+class ToDoListModel {
   @HiveField(0)
-  String title;
-
+  final String title;
   @HiveField(1)
   bool isChecked;
-
   @HiveField(2)
-  String date;
+  final String date;
 
-  TodoListModelHive({
+  ToDoListModel({
     required this.title,
     required this.isChecked,
     required this.date,

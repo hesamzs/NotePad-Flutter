@@ -245,9 +245,10 @@ class _HomePageState extends State<HomePage> {
                   } else {
                     WelcomeModel current = welcomeComponents[index];
                     return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         closebtn(sWidth),
-                        Expanded(child: Container()),
+                        // Expanded(child: Container()),
                         SizedBox(
                           height: sHeight * .8,
                           child: Stack(
@@ -416,8 +417,8 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 45,
+                         SizedBox(
+                          height: 40,
                         )
                       ],
                     );

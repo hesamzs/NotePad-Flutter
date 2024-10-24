@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:notepad/database/todoListModel.dart';
+import 'package:notepad/database/category_db/categoriesDB.dart';
+import 'package:notepad/models/todo_list_model.dart';
 import 'package:notepad/pages/task_page/todo_list_page.dart';
 import 'package:notepad/pages/welcome_page.dart';
 
@@ -9,8 +10,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
-  Hive.registerAdapter(TodoListModelHiveAdapter());
-  await Hive.openBox<TodoListModelHive>('todoList');
+  Hive.registerAdapter(CategoryDBAdapter());
+  Hive.registerAdapter(ToDoListModelAdapter());
+  await Hive.openBox<CategoryDB>('categoryDB');
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
