@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widget/taskpage_appbar_widget.dart';
+
 class StopwatchPage extends StatefulWidget {
   const StopwatchPage({super.key});
 
@@ -10,8 +12,16 @@ class StopwatchPage extends StatefulWidget {
 class _StopwatchPageState extends State<StopwatchPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text("Working..."),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              taskPageAppbar("Soon", context, []),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:notepad/pages/settings_panel/contact_us.dart';
 import 'package:notepad/pages/settings_panel/sounds_panel.dart';
 
+import '../widget/color_widget.dart';
 import 'settings_panel/theme_panel.dart';
 import 'settings_panel/vibrate_panel.dart';
 
@@ -83,18 +84,19 @@ class _SettingMenuState extends State<SettingMenu> {
                   Future.delayed(Duration(milliseconds: 400), () {
                     clicked = false;
                   });
-                } else {
-                  print('falsee');
                 }
+                // else {
+                //   print('falsee');
+                // }
               },
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeOut,
                 width: sWidth,
                 height: current[2] ? checkDouble(current[4].toString()) : 50,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: const Color(0xff2A135A), boxShadow: [
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: purpleTheme, boxShadow: [
                   BoxShadow(
-                    color: const Color(0xff2A135A).withOpacity(.6),
+                    color: purpleTheme.withOpacity(.6),
                     blurRadius: 6.0,
                     offset: const Offset(
                       0,

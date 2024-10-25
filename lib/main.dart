@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notepad/database/category_db/categoriesDB.dart';
-import 'package:notepad/models/todo_list_model.dart';
+import 'package:notepad/models/adaptersModel/todoModel/todo_list_model.dart';
+import 'package:notepad/pages/first_page.dart';
+import 'package:notepad/pages/task_page/reminder_page.dart';
 import 'package:notepad/pages/task_page/todo_list_page.dart';
 import 'package:notepad/pages/welcome_page.dart';
 
@@ -28,9 +30,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NotePad',
-      home: FirstImage(),
+      // home: FirstImage(),
       // home: FirstPage(),
-      // home: const ToDoListPage(name: ":Dsa"),
+      home: ReminderPage(pageName: ":Dsa"),
       theme: ThemeData(brightness: Brightness.light),
       debugShowCheckedModeBanner: false,
     );

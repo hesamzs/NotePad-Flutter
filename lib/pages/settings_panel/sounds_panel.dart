@@ -14,11 +14,10 @@ class _SoundsPanelState extends State<SoundsPanel> {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16,0,16,10),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           print('clicked');
         },
         child: Row(
@@ -31,19 +30,11 @@ class _SoundsPanelState extends State<SoundsPanel> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const AppText(
-                        text: "Ringtone",
-                        size: 10,
-                        color: Color(0xffF1F5FD),
-                        fontWeight: FontWeight.bold),
+                    const AppText(text: "Ringtone", size: 10, color: Color(0xffF1F5FD), fontWeight: FontWeight.bold),
                     const SizedBox(
                       height: 2,
                     ),
-                    AppText(
-                        text: "Default",
-                        size: 10,
-                        color: const Color(0xffF1F5FD).withOpacity(.6),
-                        fontWeight: FontWeight.bold),
+                    AppText(text: "Default", size: 10, color: const Color(0xffF1F5FD).withOpacity(.6), fontWeight: FontWeight.bold),
                   ],
                 ),
               ),
@@ -58,7 +49,9 @@ class _SoundsPanelState extends State<SoundsPanel> {
             ),
             Column(
               children: [
-                const SizedBox(height: 4,),
+                const SizedBox(
+                  height: 4,
+                ),
                 SizedBox(
                   // color: Colors.black,
                   child: FlutterSwitch(
@@ -69,7 +62,7 @@ class _SoundsPanelState extends State<SoundsPanel> {
                     padding: 4.0,
                     inactiveColor: Colors.red,
                     activeColor: Colors.green,
-                    // activeToggleColor: Color(0xff2A135A),
+                    // activeToggleColor: purpleTheme,
                     value: soundBtn,
                     onToggle: (value) {
                       print("VALUE : $value");

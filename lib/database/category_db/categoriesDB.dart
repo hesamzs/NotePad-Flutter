@@ -7,9 +7,7 @@ class CategoryDB {
   @HiveField(0)
   Map categoryTitle;
 
-
   CategoryDB({
     required this.categoryTitle,
   });
 }
-

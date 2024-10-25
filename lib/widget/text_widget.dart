@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+import 'color_widget.dart';
+
 class AppText extends StatelessWidget {
   final String text;
   final double size;
@@ -28,7 +30,7 @@ class AppText extends StatelessWidget {
           color: color,
           fontWeight: fontWeight,
           decoration: isChecked ? TextDecoration.lineThrough : TextDecoration.none,
-          decorationColor: const Color(0xff2A135A),
+          decorationColor: purpleTheme,
           fontFamily: 'Ubuntu',
           overflow: overflow),
     );

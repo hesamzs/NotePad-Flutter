@@ -8,6 +8,7 @@ import 'package:notepad/models/recent_model.dart';
 import 'package:notepad/pages/task_page/task_page.dart';
 import 'package:notepad/widget/text_widget.dart';
 
+import '../widget/color_widget.dart';
 import '../widget/date_widget.dart';
 import 'drawer_page.dart';
 
@@ -67,17 +68,17 @@ class _FirstPageState extends State<FirstPage> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              AppText(text: date.getDayNum(), size: 36, color: const Color(0xff2A135A), fontWeight: FontWeight.bold),
+                              AppText(text: date.getDayNum(), size: 36, color: purpleTheme, fontWeight: FontWeight.bold),
                               Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 6),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    AppText(text: date.getMonth(), size: 16, color: const Color(0xff2A135A), fontWeight: FontWeight.bold),
+                                    AppText(text: date.getMonth(), size: 16, color: purpleTheme, fontWeight: FontWeight.bold),
                                     AppText(
                                       text: date.getDay(),
                                       size: 12,
-                                      color: const Color(0xff2A135A),
+                                      color: purpleTheme,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ],
@@ -118,11 +119,11 @@ class _FirstPageState extends State<FirstPage> {
                               height: 9,
                               width: 25,
                               decoration: const BoxDecoration(
-                                color: Color(0xff2A135A),
+                                color: purpleTheme,
                                 borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0xff2A135A),
+                                    color: purpleTheme,
                                     blurRadius: 6.0,
                                     offset: Offset(
                                       0,
@@ -138,17 +139,18 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                           FadeInLeft(
                             delay: const Duration(milliseconds: 600),
-                            child: const AppText(text: "Categories", size: 20, color: Color(0xff2A135A), fontWeight: FontWeight.bold),
+                            child: const AppText(text: "Categories", size: 20, color: purpleTheme, fontWeight: FontWeight.bold),
                           ),
                           Expanded(child: Container()),
                           FadeInRight(
                             delay: const Duration(milliseconds: 600),
                             child: const Padding(
-                                padding: EdgeInsets.only(right: 15.0),
-                                child: Icon(
-                                  Icons.arrow_forward_ios_sharp,
-                                  color: Color(0xff2A135A),
-                                )),
+                              padding: EdgeInsets.only(right: 15.0),
+                              child: Icon(
+                                Icons.arrow_forward_ios_sharp,
+                                color: purpleTheme,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -368,11 +370,11 @@ class _FirstPageState extends State<FirstPage> {
                               height: 9,
                               width: 25,
                               decoration: const BoxDecoration(
-                                color: Color(0xff2A135A),
+                                color: purpleTheme,
                                 borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color(0xff2A135A),
+                                    color: purpleTheme,
                                     blurRadius: 6.0,
                                     offset: Offset(
                                       0,
@@ -388,7 +390,7 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                           FadeInLeft(
                             delay: const Duration(milliseconds: 1100),
-                            child: const AppText(text: "Recent", size: 20, color: Color(0xff2A135A), fontWeight: FontWeight.bold),
+                            child: const AppText(text: "Recent", size: 20, color: purpleTheme, fontWeight: FontWeight.bold),
                           ),
                           Expanded(child: Container()),
                           FadeInRight(
@@ -397,7 +399,7 @@ class _FirstPageState extends State<FirstPage> {
                                 padding: EdgeInsets.only(right: 15.0),
                                 child: Icon(
                                   Icons.arrow_forward_ios_sharp,
-                                  color: Color(0xff2A135A),
+                                  color: purpleTheme,
                                 )),
                           ),
                         ],

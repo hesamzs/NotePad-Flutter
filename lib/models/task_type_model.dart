@@ -36,7 +36,9 @@ List<TaskTypeModel> taskTypeModel = [
     title: "Reminder",
     id: 2,
     logo: Icons.notification_add_outlined,
-    className: const ReminderPage(),
+    className: const ReminderPage(
+      pageName: 'Reminder',
+    ),
   ),
   TaskTypeModel(
     title: "Notes",

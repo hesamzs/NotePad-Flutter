@@ -76,19 +76,20 @@ class FooterPage extends StatelessWidget {
           height: 5,
         ),
         AppText(
-            text: sWidth > 240 ? "Made with \u2764 by hesamzs" : "Made by hesamzs",
-            size: sWidth > 270 ? 14 : 8,
-            color: const Color(0xffF1F5FD).withOpacity(0.8),
-            fontWeight: FontWeight.bold,),
+          text: sWidth > 240 ? "Made with \u2764 by hesamzs" : "Made by hesamzs",
+          size: sWidth > 270 ? 14 : 8,
+          color: const Color(0xffF1F5FD).withOpacity(0.8),
+          fontWeight: FontWeight.bold,
+        ),
         const SizedBox(
           height: 5,
         ),
         AppText(
-            text: "v0.10",
-            size:  sWidth > 270 ? 12 : 8,
-            color: const Color(0xffF1F5FD).withOpacity(0.8),
-            fontWeight: FontWeight.bold,),
-
+          text: "v0.10",
+          size: sWidth > 270 ? 12 : 8,
+          color: const Color(0xffF1F5FD).withOpacity(0.8),
+          fontWeight: FontWeight.bold,
+        ),
       ],
     );
   }

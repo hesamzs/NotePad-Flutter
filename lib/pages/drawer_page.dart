@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notepad/pages/settings_menu.dart';
 import 'package:notepad/widget/text_widget.dart';
 
+import '../widget/color_widget.dart';
+
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
 
@@ -43,11 +45,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
                             height: 9,
                             width: 25,
                             decoration: const BoxDecoration(
-                              color: Color(0xff2A135A),
+                              color: purpleTheme,
                               borderRadius: BorderRadius.only(topRight: Radius.circular(5), bottomRight: Radius.circular(5)),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Color(0xff2A135A),
+                                  color: purpleTheme,
                                   blurRadius: 6.0,
                                   offset: Offset(
                                     0,
@@ -60,7 +62,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                           const SizedBox(
                             width: 10,
                           ),
-                          const AppText(text: "Settings", size: 20, color: Color(0xff2A135A), fontWeight: FontWeight.bold),
+                          const AppText(text: "Settings", size: 20, color: purpleTheme, fontWeight: FontWeight.bold),
                         ],
                       ),
                       Container(
@@ -82,7 +84,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     ],
                   )
                 : const Center(
-                    child: AppText(text: "your screen size is too small ", size: 14, color: Color(0xff2A135A), fontWeight: FontWeight.w600),
+                    child: AppText(text: "your screen size is too small ", size: 14, color: purpleTheme, fontWeight: FontWeight.w600),
                   ),
           )
         ],

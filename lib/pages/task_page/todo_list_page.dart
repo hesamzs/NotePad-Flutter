@@ -1,12 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:notepad/database/category_db/categoriesDB.dart';
-import 'package:notepad/models/todo_list_model.dart';
+
+import 'package:notepad/models/adaptersModel/todoModel/todo_list_model.dart';
 
 import 'package:notepad/widget/taskpage_appbar_widget.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../widget/color_widget.dart';
 import '../../widget/date_widget.dart';
 import '../../widget/text_widget.dart';
 
@@ -14,7 +14,6 @@ class ToDoListPage extends StatefulWidget {
   const ToDoListPage({super.key, required this.name});
 
   final String name;
-
 
   @override
   State<ToDoListPage> createState() => _ToDoListPageState();
@@ -35,14 +34,12 @@ class _ToDoListPageState extends State<ToDoListPage> {
   late FocusNode addTaskNode;
   TextEditingController addTaskController = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
     addTaskNode = FocusNode();
 
-
-    Future.delayed(Duration(milliseconds: 200),(){
+    Future.delayed(Duration(milliseconds: 200), () {
       changeModelList(false);
     });
   }
@@ -50,8 +47,8 @@ class _ToDoListPageState extends State<ToDoListPage> {
   @override
   void didChangeDependencies() {
     var todo = ModalRoute.of(context)!.settings.arguments as List;
-    for(var item in todo){
-      if (!modelList.contains(item)){
+    for (var item in todo) {
+      if (!modelList.contains(item)) {
         modelList.add(item);
       }
     }
@@ -62,13 +59,14 @@ class _ToDoListPageState extends State<ToDoListPage> {
   Widget build(BuildContext context) {
     var sWidth = MediaQuery.of(context).size.width;
 
-
-
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (bool didPop,  result) {
-        if (didPop == false){
-          Navigator.pop(context,[widget.name,modelList],);
+      onPopInvokedWithResult: (bool didPop, result) {
+        if (didPop == false) {
+          Navigator.pop(
+            context,
+            [widget.name, modelList],
+          );
         }
       },
       child: SafeArea(
@@ -88,7 +86,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    taskPageAppbar(sWidth, widget.name, context,modelList),
+                    taskPageAppbar(widget.name, context, modelList),
                     tableCalendarWidget(),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -123,7 +121,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                       end: Alignment.bottomRight,
                                       colors: [
                                         Color(0xff685492),
-                                        Color(0xff2A135A),
+                                        purpleTheme,
                                       ],
                                     ),
                                     borderRadius: BorderRadius.circular(8),
@@ -138,12 +136,12 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                             value: item.isChecked,
                                             checkColor: Colors.greenAccent,
                                             fillColor: WidgetStatePropertyAll<Color?>(
-                                              const Color(0xff2A135A).withOpacity(.5),
+                                              purpleTheme.withOpacity(.5),
                                             ),
                                             side: BorderSide(
                                               style: BorderStyle.solid,
                                               width: 2,
-                                              color: const Color(0xff2A135A).withOpacity(.5),
+                                              color: purpleTheme.withOpacity(.5),
                                             ),
                                             onChanged: (bool? value) {
                                               setState(
@@ -166,13 +164,11 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                       ),
                                       GestureDetector(
                                         onTap: () {
-
                                           setState(() {
                                             print(modelList.length);
                                             modelList.remove(item);
                                             tempModelList.remove(item);
                                             print(modelList.length);
-
                                           });
                                         },
                                         child: SizedBox(
@@ -208,7 +204,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                       curve: Curves.easeInOut,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: const Color(0xff2A135A),
+                        color: purpleTheme,
                       ),
                       child: _expanded
                           ? Padding(
@@ -291,7 +287,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                         child: Container(
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xff2A135A),
+                            color: purpleTheme,
                           ),
                           child: Center(
                             child: AnimatedCrossFade(

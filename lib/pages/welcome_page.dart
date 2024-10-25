@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:notepad/pages/first_page.dart';
 
 import '../models/welcome_model.dart';
+import '../widget/color_widget.dart';
 import '../widget/text_widget.dart';
 
 class FirstImage extends StatefulWidget {
@@ -18,8 +19,7 @@ class _FirstImageState extends State<FirstImage> {
   @override
   void initState() {
     Timer(const Duration(milliseconds: 300), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
     });
     super.initState();
   }
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
     var sHeight = size.height;
     return SafeArea(
       child: Scaffold(
-          backgroundColor: const Color(0xff2A135A),
+          backgroundColor: purpleTheme,
           body: SizedBox(
             width: sWidth,
             height: sHeight,
@@ -118,11 +118,7 @@ class _HomePageState extends State<HomePage> {
                                             SizedBox(
                                               height: sHeight * 0.32,
                                             ),
-                                            const AppText(
-                                                text: "Welcome...",
-                                                size: 25,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
+                                            const AppText(text: "Welcome...", size: 25, color: Colors.white, fontWeight: FontWeight.bold),
                                             SizedBox(
                                               height: sHeight * 0.03,
                                             ),
@@ -159,29 +155,19 @@ class _HomePageState extends State<HomePage> {
                                         onTap: () {
                                           pageController.animateToPage(
                                             indexDots,
-                                            duration: const Duration(
-                                                milliseconds: 500),
+                                            duration: const Duration(milliseconds: 500),
                                             curve: Curves.linear,
                                           );
                                         },
                                         child: AnimatedContainer(
-                                          margin: EdgeInsets.only(
-                                              right: size.width * 0.01,
-                                              bottom: size.height * 0.008),
+                                          margin: EdgeInsets.only(right: size.width * 0.01, bottom: size.height * 0.008),
                                           width: 22,
                                           height: 22,
-                                          duration:
-                                              const Duration(milliseconds: 200),
+                                          duration: const Duration(milliseconds: 200),
                                           decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                              color: index == indexDots
-                                                  ? const Color(0xff35226C)
-                                                  : Colors.transparent,
-                                              border: Border.all(
-                                                  color:
-                                                      const Color(0xff35226C),
-                                                  width: 3)),
+                                              borderRadius: BorderRadius.circular(100),
+                                              color: index == indexDots ? const Color(0xff35226C) : Colors.transparent,
+                                              border: Border.all(color: const Color(0xff35226C), width: 3)),
                                         ),
                                       ),
                                     ),
@@ -196,8 +182,7 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () {
                                     pageController.animateToPage(
                                       pageController.page!.toInt() + 1,
-                                      duration:
-                                          const Duration(milliseconds: 500),
+                                      duration: const Duration(milliseconds: 500),
                                       curve: Curves.linear,
                                     );
                                   },
@@ -205,29 +190,26 @@ class _HomePageState extends State<HomePage> {
                                     delay: const Duration(milliseconds: 100),
                                     child: GestureDetector(
                                       onTap: () {
-                                        Navigator.of(context)
-                                            .push(FirstPageRoute());
+                                        Navigator.of(context).push(FirstPageRoute());
                                       },
                                       child: Container(
                                         width: sWidth * 0.4,
                                         height: sHeight * 0.06,
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: const Color(0xff2A135A),
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: purpleTheme,
                                         ),
                                         child: Row(
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: sWidth * 0.08),
+                                              padding: EdgeInsets.only(left: sWidth * 0.08),
                                               child: Center(
                                                 child: AppText(
-                                                    text: "Get Started",
-                                                    size: sWidth * 0.05,
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
+                                                  text: "Get Started",
+                                                  size: sWidth * 0.05,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -259,8 +241,7 @@ class _HomePageState extends State<HomePage> {
                                   FadeInUp(
                                     delay: const Duration(milliseconds: 100),
                                     child: Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 15),
+                                      margin: const EdgeInsets.symmetric(horizontal: 15),
                                       width: sWidth,
                                       height: sHeight * 0.6,
                                       decoration: const BoxDecoration(
@@ -281,34 +262,19 @@ class _HomePageState extends State<HomePage> {
                                           )),
                                       child: Center(
                                         child: FadeInUp(
-                                          delay:
-                                              const Duration(milliseconds: 100),
+                                          delay: const Duration(milliseconds: 100),
                                           child: Column(
                                             children: [
                                               SizedBox(
                                                 height: sHeight * 0.19,
                                               ),
-                                              AppText(
-                                                  text: current.title,
-                                                  size: 25,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
+                                              AppText(text: current.title, size: 25, color: Colors.white, fontWeight: FontWeight.bold),
                                               SizedBox(
                                                 height: sHeight * 0.03,
                                               ),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 16.0),
-                                                child: Wrap(children: [
-                                                  AppText(
-                                                      text: current.description,
-                                                      size: 13,
-                                                      color: const Color(
-                                                          0xffDEDEDE),
-                                                      fontWeight:
-                                                          FontWeight.w600)
-                                                ]),
+                                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                                child: Wrap(children: [AppText(text: current.description, size: 13, color: const Color(0xffDEDEDE), fontWeight: FontWeight.w600)]),
                                               ),
                                             ],
                                           ),
@@ -321,9 +287,7 @@ class _HomePageState extends State<HomePage> {
                               Positioned(
                                 bottom: sHeight * 0.46,
                                 left: current.posleft,
-                                child: FadeInLeft(
-                                    delay: const Duration(milliseconds: 100),
-                                    child: Image.asset(current.imageUrl)),
+                                child: FadeInLeft(delay: const Duration(milliseconds: 100), child: Image.asset(current.imageUrl)),
                               ),
                               Positioned(
                                 left: 50,
@@ -337,29 +301,19 @@ class _HomePageState extends State<HomePage> {
                                         onTap: () {
                                           pageController.animateToPage(
                                             indexDots,
-                                            duration: const Duration(
-                                                milliseconds: 500),
+                                            duration: const Duration(milliseconds: 500),
                                             curve: Curves.linear,
                                           );
                                         },
                                         child: AnimatedContainer(
-                                          margin: EdgeInsets.only(
-                                              right: size.width * 0.01,
-                                              bottom: size.height * 0.008),
+                                          margin: EdgeInsets.only(right: size.width * 0.01, bottom: size.height * 0.008),
                                           width: 22,
                                           height: 22,
-                                          duration:
-                                              const Duration(milliseconds: 200),
+                                          duration: const Duration(milliseconds: 200),
                                           decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                              color: index == indexDots
-                                                  ? const Color(0xff35226C)
-                                                  : Colors.transparent,
-                                              border: Border.all(
-                                                  color:
-                                                      const Color(0xff35226C),
-                                                  width: 3)),
+                                              borderRadius: BorderRadius.circular(100),
+                                              color: index == indexDots ? const Color(0xff35226C) : Colors.transparent,
+                                              border: Border.all(color: const Color(0xff35226C), width: 3)),
                                         ),
                                       ),
                                     ),
@@ -373,8 +327,7 @@ class _HomePageState extends State<HomePage> {
                                   onTap: () {
                                     pageController.animateToPage(
                                       pageController.page!.toInt() + 1,
-                                      duration:
-                                          const Duration(milliseconds: 500),
+                                      duration: const Duration(milliseconds: 500),
                                       curve: Curves.linear,
                                     );
                                   },
@@ -385,24 +338,17 @@ class _HomePageState extends State<HomePage> {
                                       height: sHeight * 0.06,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: const Color(0xff2A135A),
+                                        color: purpleTheme,
                                       ),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: const [
                                           Padding(
-                                            padding:
-                                                EdgeInsets.only(left: 24.0),
-                                            child: AppText(
-                                                text: "Next",
-                                                size: 20,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
+                                            padding: EdgeInsets.only(left: 24.0),
+                                            child: AppText(text: "Next", size: 20, color: Colors.white, fontWeight: FontWeight.bold),
                                           ),
                                           Padding(
-                                            padding:
-                                                EdgeInsets.only(right: 12.0),
+                                            padding: EdgeInsets.only(right: 12.0),
                                             child: Icon(
                                               Icons.arrow_forward_ios_rounded,
                                               color: Colors.white,
@@ -417,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                         SizedBox(
+                        SizedBox(
                           height: 40,
                         )
                       ],
@@ -433,8 +379,7 @@ class _HomePageState extends State<HomePage> {
       delay: const Duration(milliseconds: 100),
       child: GestureDetector(
         onTap: () => Timer(const Duration(milliseconds: 300), () {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const FirstPage()));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const FirstPage()));
         }),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),

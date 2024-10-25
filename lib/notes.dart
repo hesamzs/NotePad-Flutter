@@ -18,7 +18,6 @@
 // print(value);
 // });
 
-
 // Days List Widget
 
 // sWidth > 450
@@ -47,11 +46,11 @@
 //                 border: Border.all(
 //                     color: isTrue == index
 //                         ? Colors.transparent
-//                         : const Color(0xff2A135A).withOpacity(0.7),
+//                         : purpleTheme.withOpacity(0.7),
 //                     width: 2),
 //                 boxShadow: [
 //                   BoxShadow(
-//                     color: const Color(0xff2A135A).withOpacity(0.3),
+//                     color: purpleTheme.withOpacity(0.3),
 //                     blurRadius: 3.0,
 //                     offset: const Offset(
 //                       2,
@@ -65,7 +64,7 @@
 //                   end: Alignment.bottomRight,
 //                   colors: [
 //                     Color(0xff685492),
-//                     Color(0xff2A135A),
+//                      purpleTheme,
 //                   ],
 //                 )
 //                     : const LinearGradient(
@@ -85,7 +84,7 @@
 //                         size: 5,
 //                         color: isTrue == index
 //                             ? const Color(0xffF1F5FD)
-//                             : const Color(0xff2A135A),
+//                             : purpleTheme,
 //                         fontWeight: FontWeight.bold)),
 //                 Center(
 //                   child: AppText(
@@ -93,7 +92,7 @@
 //                       size: 18,
 //                       color: isTrue == index
 //                           ? const Color(0xffF1F5FD)
-//                           : const Color(0xff2A135A),
+//                           : purpleTheme,
 //                       fontWeight: FontWeight.bold),
 //                 ),
 //                 Expanded(child: Container()),
@@ -126,11 +125,11 @@
 //                 border: Border.all(
 //                     color: isTrue == index
 //                         ? Colors.transparent
-//                         : const Color(0xff2A135A).withOpacity(0.7),
+//                         : purpleTheme.withOpacity(0.7),
 //                     width: 2),
 //                 boxShadow: [
 //                   BoxShadow(
-//                     color: const Color(0xff2A135A).withOpacity(0.3),
+//                     color: purpleTheme.withOpacity(0.3),
 //                     blurRadius: 3.0,
 //                     offset: const Offset(
 //                       2,
@@ -144,7 +143,7 @@
 //                   end: Alignment.bottomRight,
 //                   colors: [
 //                     Color(0xff685492),
-//                     Color(0xff2A135A),
+//                      purpleTheme,
 //                   ],
 //                 )
 //                     : const LinearGradient(
@@ -164,7 +163,7 @@
 //                         size: 5,
 //                         color: isTrue == index
 //                             ? const Color(0xffF1F5FD)
-//                             : const Color(0xff2A135A),
+//                             : purpleTheme,
 //                         fontWeight: FontWeight.bold)),
 //                 Center(
 //                   child: AppText(
@@ -172,7 +171,7 @@
 //                       size: 18,
 //                       color: isTrue == index
 //                           ? const Color(0xffF1F5FD)
-//                           : const Color(0xff2A135A),
+//                           : purpleTheme,
 //                       fontWeight: FontWeight.bold),
 //                 ),
 //                 Expanded(child: Container()),

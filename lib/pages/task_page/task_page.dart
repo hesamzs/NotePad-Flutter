@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
-import 'package:hive/hive.dart';
+
 import 'package:notepad/database/category_db/categoriesDB.dart';
 import 'package:notepad/models/task_notif_model.dart';
 import 'package:notepad/widget/date_widget.dart';
 import 'package:notepad/widget/text_widget.dart';
 
 import '../../models/task_type_model.dart';
+import '../../widget/appBar_widget.dart';
+import '../../widget/color_widget.dart';
 
 class TaskPage extends StatefulWidget {
   const TaskPage({super.key, required this.name});
@@ -49,9 +51,7 @@ class _TaskPageState extends State<TaskPage> {
         CategoryDB(categoryTitle: {widget.name: {}}),
       );
       dbIndex = categoryDB.length - 1;
-
     }
-
   }
 
   @override
@@ -65,7 +65,7 @@ class _TaskPageState extends State<TaskPage> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              appBar(sWidth, widget.name),
+              appBar(widget.name, context),
               Container(
                 width: sWidth * 0.9,
                 height: 130,
@@ -90,7 +90,7 @@ class _TaskPageState extends State<TaskPage> {
                   width: sWidth,
                   height: 2,
                   decoration: BoxDecoration(
-                    color: const Color(0xff2A135A),
+                    color: purpleTheme,
                     boxShadow: [
                       BoxShadow(
                         color: const Color(0xff422D70).withOpacity(0.7),
@@ -109,112 +109,6 @@ class _TaskPageState extends State<TaskPage> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget appBar(double sWidth, String name) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0xff2A135A),
-                        blurRadius: 16.0,
-                        offset: Offset(
-                          0,
-                          0,
-                        ),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(50),
-                    color: const Color(0xff2A135A),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Icon(
-                      Icons.arrow_back_ios_new_sharp,
-                      color: Color(0xffF1F5FD),
-                      size: 20,
-                      shadows: [
-                        Shadow(
-                          color: Color(0xffF1F5FD),
-                          blurRadius: 6.0,
-                          offset: Offset(
-                            -1,
-                            0,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  AppText(
-                    text: sWidth < 240 ? " " : widget.name,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xff2A135A),
-                    size: 20,
-                  ),
-                  AppText(
-                    text: sWidth < 240 ? " " : "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}",
-                    size: 12,
-                    color: const Color(0xff2A135A).withOpacity(0.7),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0xff2A135A),
-                        blurRadius: 16.0,
-                        offset: Offset(
-                          0,
-                          0,
-                        ),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(50),
-                    color: const Color(0xff2A135A),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: SvgPicture.asset(
-                      "assets/images/chart.svg",
-                      colorFilter: ColorFilter.mode(Color(0xffF1F5FD), BlendMode.srcIn),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: sWidth > 239 ? 20 : 0,
-        ),
-        _middleAppBar(widget.name),
-      ],
     );
   }
 
@@ -251,7 +145,7 @@ class _TaskPageState extends State<TaskPage> {
                   end: Alignment.bottomRight,
                   colors: [
                     Color(0xff685492),
-                    Color(0xff2A135A),
+                    purpleTheme,
                   ],
                 ),
                 boxShadow: [
@@ -330,7 +224,7 @@ class _TaskPageState extends State<TaskPage> {
               end: Alignment.bottomRight,
               colors: [
                 Color(0xff685492),
-                Color(0xff2A135A),
+                purpleTheme,
               ],
             ),
             boxShadow: [
@@ -378,25 +272,5 @@ class _TaskPageState extends State<TaskPage> {
         ),
       );
     });
-  }
-
-  Widget _middleAppBar(String name) {
-    var sWidth = MediaQuery.of(context).size.width;
-    return sWidth < 239
-        ? Column(
-            children: [
-              AppText(
-                text: name,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xff2A135A),
-                size: 20,
-              ),
-              AppText(text: "${date.getDayNum()} ${date.getMonth()} ${date.getYear()}", size: 12, color: const Color(0xff2A135A).withOpacity(0.7), fontWeight: FontWeight.bold),
-              const SizedBox(
-                height: 20,
-              )
-            ],
-          )
-        : Container();
   }
 }
