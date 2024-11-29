@@ -91,7 +91,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       child: AppText(
-                        text: _showSelectedDay,
+                        text: _showSelectedDay == date.checkDate() ? "Today" :  _showSelectedDay,
                         size: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black54,
@@ -165,10 +165,8 @@ class _ToDoListPageState extends State<ToDoListPage> {
                                       GestureDetector(
                                         onTap: () {
                                           setState(() {
-                                            print(modelList.length);
                                             modelList.remove(item);
                                             tempModelList.remove(item);
-                                            print(modelList.length);
                                           });
                                         },
                                         child: SizedBox(

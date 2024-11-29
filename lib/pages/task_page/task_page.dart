@@ -37,7 +37,7 @@ class _TaskPageState extends State<TaskPage> {
         CategoryDB(categoryTitle: {widget.name: {}}),
       );
       dbIndex = 0;
-      print("DB INDEX 0");
+
     }
     for (var e in categoryDB.keys) {
       if (categoryDB.getAt(e)!.categoryTitle.keys.contains(widget.name)) {
@@ -50,6 +50,8 @@ class _TaskPageState extends State<TaskPage> {
       categoryDB.add(
         CategoryDB(categoryTitle: {widget.name: {}}),
       );
+      // print("DB INDEX ${categoryDB.length - 1} Added");
+
       dbIndex = categoryDB.length - 1;
     }
   }

@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NotePad',
-      // home: FirstImage(),
+      home: FirstImage(),
       // home: FirstPage(),
-      home: ReminderPage(pageName: ":Dsa"),
+      // home: ReminderPage(pageName: ":Dsa"),
       theme: ThemeData(brightness: Brightness.light),
       debugShowCheckedModeBanner: false,
     );

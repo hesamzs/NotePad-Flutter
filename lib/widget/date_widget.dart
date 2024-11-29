@@ -42,9 +42,11 @@ class GetDate {
 
   String createDate(DateTime time) {
     String date = "${months[time.month - 1]} ${time.day},${time.year}";
-    if (time.day == now.day && time.month == now.month && time.year == now.year) {
-      date = "Today";
-    }
+    return date;
+  }
+
+  String checkDate() {
+    String date = "${months[now.month - 1]} ${now.day},${now.year}";
     return date;
   }
 
